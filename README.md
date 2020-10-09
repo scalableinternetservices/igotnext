@@ -253,4 +253,5 @@ Your Honeycomb instrumentation will provide all the data visualizations you need
 ![image](https://user-images.githubusercontent.com/1095573/93257787-3d892b00-f752-11ea-8219-e1789b42cbf0.png)
 
 
+Group Members: Ryan Yang, Sean Yin, Aaron Phillip, Cheng Peng
 ![image](https://docs.google.com/drawings/d/e/2PACX-1vRU8Hepb9Ldgr06uLW5Vo7HEa3n1WQFnnje_P02NKKy3nMVPoi89z7VKltGdNMgPBkmIVrStCgEyHLT/pub?w=1440&amp;h=1440)
