@@ -1,4 +1,4 @@
-# bespin
+# igotnext
 
 Welcome to Cloud City!
 
@@ -32,7 +32,7 @@ First, install [the Quickstart dependencies](https://github.com/rothfels/bespin#
 
 ### Choose your team slug
 
-Choose a short, alphanumeric [*slug*](https://en.wikipedia.org/wiki/Clean_URL#Slug) for your project. This will be used to identify all the AWS resources created for your project, as well as the public URL for your project. Once you finish the Quickstart, your app will be available at https://**yourteamslug**.cloudcity.computer. **Your slug should be only letters and digits.**
+Choose a short, alphanumeric [*slug*](https://en.wikipedia.org/wiki/Clean_URL#Slug) for your project. This will be used to identify all the AWS resources created for your project, as well as the public URL for your project. Once you finish the Quickstart, your app will be available at https://igotnext.cloudcity.computer. **Your slug should be only letters and digits.**
 
 ### Get the starter project
 
