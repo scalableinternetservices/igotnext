@@ -9,7 +9,7 @@ export class Court extends BaseEntity {
   // @ManyToOne(() => Aggregate, agg => agg.listOfCourts)
   // agg: Aggregate
 
-  @OneToOne(() => Match)
+  @OneToOne(() => Match, { eager: true })
   @JoinColumn()
   match: Match
 }

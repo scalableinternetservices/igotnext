@@ -20,6 +20,8 @@ type Query {
 
   surveys: [Survey!]!
   survey (surveyId: Int!): Survey
+
+  match (match_id: Int!): Match
 }
 
 type Mutation {
