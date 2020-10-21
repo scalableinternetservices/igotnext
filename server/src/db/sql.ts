@@ -1,3 +1,4 @@
+import { Match } from '@reach/router'
 import { createPool, PoolConnection, QueryOptions } from 'mysql2'
 import { createConnection } from 'typeorm'
 import { Session } from '../entities/Session'
@@ -20,7 +21,7 @@ export async function initORM() {
     username: process.env.MYSQL_USER || 'root',
     synchronize: true,
     logging: false,
-    entities: [User, Session, Survey, SurveyQuestion, SurveyAnswer],
+    entities: [User, Session, Survey, SurveyQuestion, SurveyAnswer, Match],
     extra: {
       connectionLimit: 5,
     },
