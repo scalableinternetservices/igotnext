@@ -29,4 +29,10 @@ export class User extends BaseEntity implements GraphqlUser {
     nullable: true,
   })
   name: string
+
+  @Column()
+  height: number
+
+  // @ManyToOne(() => Aggregate, agg => agg.listOfUsers)
+  // agg: Aggregate
 }

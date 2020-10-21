@@ -85,6 +85,26 @@ export interface User {
   name: Scalars['String']
 }
 
+export interface Court {
+  __typename?: 'Court'
+  courtID: Scalars['Int']
+  match: Match
+}
+
+export interface Match {
+  __typename?: 'Match'
+  matchID: Scalars['Int']
+  status: Scalars['String']
+}
+
+export interface Aggregate {
+  __typename?: 'Aggregate'
+  id: Scalars['Int']
+  listOfMatches: Array<Match>
+  listOfCourts: Array<Court>
+  listOfUsers: Array<User>
+}
+
 export enum UserType {
   Admin = 'ADMIN',
   User = 'USER',
