@@ -12,12 +12,13 @@ import { link } from './Link'
 import { getLoginPath, getPath, getSurveyPath, Route } from './route'
 
 const title = {
-  name: 'CS188',
+  name: 'IGotNext',
   path: getPath(Route.HOME),
   title: true,
 }
 
 const otherTabs = [
+  /*
   {
     name: 'lectures',
     path: getPath(Route.LECTURES),
@@ -26,10 +27,20 @@ const otherTabs = [
     name: 'projects',
     path: getPath(Route.PROJECTS),
   },
+  */
+  //TODO: add routing
   {
-    name: 'playground',
-    path: getPath(Route.PLAYGROUND),
+    name: 'login',
+    path: getPath(Route.LOGIN),
   },
+  {
+    name: 'signup',
+    path: getPath(Route.PROJECTS),
+  },
+  {
+    name: 'lobby',
+    path: getPath(Route.PLAYGROUND),
+  }
 ]
 
 export function NavBar() {
