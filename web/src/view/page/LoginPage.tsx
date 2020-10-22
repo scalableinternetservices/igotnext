@@ -1,19 +1,26 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
+import { Login } from '../auth/Login'
+import { AppRouteParams } from '../nav/route'
+import { Page } from './Page'
+/*
 import { ColorName, Colors } from '../../../../common/src/colors'
 import { H2 } from '../../style/header'
 import { Spacer } from '../../style/spacer'
 import { style } from '../../style/styled'
 import { BodyText, IntroText } from '../../style/text'
 import { Link } from '../nav/Link'
-import { AppRouteParams } from '../nav/route'
-import { Page } from './Page'
+*/
 
 interface LecturesPageProps extends RouteComponentProps, AppRouteParams {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function LecturesPage(props: LecturesPageProps) {
+export function LoginPage(props: LecturesPageProps) {
   return (
+    <Page>
+      <Login />
+    </Page>
+    /*
     <Page>
       <Section>
         <H2>Lectures</H2>
@@ -147,9 +154,11 @@ export function LecturesPage(props: LecturesPageProps) {
         </Table>
       </Section>
     </Page>
+    */
   )
 }
 
+/*
 interface RequiredReading {
   title: string
   href: string
@@ -205,3 +214,4 @@ const Section = style('div', 'mb4 mid-gray ba b--mid-gray br2 pa3', (p: { $color
 const TR = style('tr', 'ba b--black')
 
 const TD = style('td', 'mid-gray pa3 v-mid', { minWidth: '7em' })
+*/
