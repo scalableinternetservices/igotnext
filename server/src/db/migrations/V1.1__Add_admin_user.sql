@@ -1,1 +1,1 @@
-insert into `user` (`email`, `userType`, `name`,`height`) values ('rothfels@cs.ucla.edu', 'ADMIN', 'John Rothfels', 10);
+insert into `user` (`email`, `userType`, `name`, `height`) values ('rothfels@cs.ucla.edu', 'ADMIN', 'John Rothfels', 185);
