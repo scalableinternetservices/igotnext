@@ -227,37 +227,6 @@ export interface Match {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Survey
-// ====================================================
-
-export interface Survey_currentQuestion_answers {
-  __typename: 'SurveyAnswer'
-  answer: string
-}
-
-export interface Survey_currentQuestion {
-  __typename: 'SurveyQuestion'
-  id: number
-  prompt: string
-  choices: string[] | null
-  answers: Survey_currentQuestion_answers[]
-}
-
-export interface Survey {
-  __typename: 'Survey'
-  id: number
-  name: string
-  isStarted: boolean
-  isCompleted: boolean
-  currentQuestion: Survey_currentQuestion | null
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL fragment: SurveyQuestion
 // ====================================================
 
