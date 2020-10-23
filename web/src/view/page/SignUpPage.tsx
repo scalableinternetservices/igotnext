@@ -1,33 +1,30 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
+import { Login } from '../auth/Login'
+import { AppRouteParams } from '../nav/route'
+import { Page } from './Page'
+/*
 import { ColorName, Colors } from '../../../../common/src/colors'
+import { AppRouteParams, getPlaygroundPath } from '../nav/route'
 import { H2 } from '../../style/header'
 import { Spacer } from '../../style/spacer'
 import { style } from '../../style/styled'
 import { BodyText } from '../../style/text'
 import { Link } from '../nav/Link'
-import { AppRouteParams, getPlaygroundPath } from '../nav/route'
-import { Page } from './Page'
+*/
 
 interface ProjectsPageProps extends RouteComponentProps, AppRouteParams {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function ProjectsPage(props: ProjectsPageProps) {
+export function SignUpPage(props: ProjectsPageProps) {
   return (
     <Page>
-      <Section>
-        <ProjectOverview />
-        <Spacer $h5 />
-        <ProjectRequirements />
-        <Spacer $h5 />
-        <ProjectIdeas />
-        <Spacer $h5 />
-        <SprintSchedule />
-      </Section>
+      <Login />
     </Page>
   )
 }
 
+/*
 function ProjectOverview() {
   return (
     <>
@@ -47,7 +44,9 @@ function ProjectOverview() {
     </>
   )
 }
+*/
 
+/*
 function ProjectRequirements() {
   return (
     <>
@@ -71,7 +70,9 @@ function ProjectRequirements() {
     </>
   )
 }
+*/
 
+/*
 function ProjectIdeas() {
   return (
     <>
@@ -104,7 +105,9 @@ function ProjectIdeas() {
     </>
   )
 }
+*/
 
+/*
 function SprintSchedule() {
   return (
     <>
@@ -187,7 +190,9 @@ function SprintSchedule() {
     </>
   )
 }
+  */
 
+/*
 interface ChecklistItem {
   name: string
   href?: string
@@ -238,3 +243,4 @@ const Section = style('div', 'mb4 mid-gray ba b--mid-gray br2 pa3', (p: { $color
 const TR = style('tr', 'ba b--black')
 
 const TD = style('td', 'mid-gray pa3 v-mid', { minWidth: '7em' })
+*/

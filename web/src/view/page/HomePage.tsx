@@ -1,18 +1,28 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
-import { ColorName, Colors } from '../../../../common/src/colors'
+import { AppRouteParams } from '../nav/route'
+import { Page } from './Page'
+/*
 import { H1, H2, H3 } from '../../style/header'
-import { Spacer } from '../../style/spacer'
+import { AppRouteParams, getPath, Route } from '../nav/route'
 import { style } from '../../style/styled'
+import { ColorName, Colors } from '../../../../common/src/colors'
+import { Spacer } from '../../style/spacer'
 import { BodyText } from '../../style/text'
 import { Link } from '../nav/Link'
-import { AppRouteParams, getPath, Route } from '../nav/route'
 import { Page } from './Page'
+*/
 
 interface HomePageProps extends RouteComponentProps, AppRouteParams {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomePage(props: HomePageProps) {
+  return (
+    <React.Fragment>
+      <Page></Page>
+    </React.Fragment>
+  )
+  /*
   return (
     <Page>
       <Hero>
@@ -155,8 +165,10 @@ export function HomePage(props: HomePageProps) {
       </Content>
     </Page>
   )
+  */
 }
 
+/*
 const Hero = style('div', 'mb4 w-100 ba b--mid-gray br2 pa3 tc', {
   borderLeftColor: Colors.lemon + '!important',
   borderRightColor: Colors.lemon + '!important',
@@ -178,3 +190,4 @@ const Section = style('div', 'mb4 mid-gray ba b--mid-gray br2 pa3', (p: { $color
 const TD = style('td', 'pa1', p => ({
   color: p.$theme.textColor(),
 }))
+*/
