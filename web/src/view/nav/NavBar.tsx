@@ -1,15 +1,16 @@
 import { useLocation } from '@reach/router'
 import * as React from 'react'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
+//import { useContext } from 'react'
 import ReactDOM from 'react-dom'
 import { useMediaQuery } from 'react-responsive'
 import { breakpoints } from '../../style/breakpoints'
 import { MenuIcon } from '../../style/icons'
 import { style } from '../../style/styled'
-import { UserContext } from '../auth/user'
+//import { UserContext } from '../auth/user'
 import { addToastListener, removeToastListener, Toast, ToastType } from '../toast/toast'
 import { link } from './Link'
-import { getLoginPath, getPath, getSurveyPath, Route } from './route'
+import { getPath, Route } from './route'
 
 const title = {
   name: 'IGotNext',
@@ -35,12 +36,12 @@ const otherTabs = [
   },
   {
     name: 'signup',
-    path: getPath(Route.PROJECTS),
+    path: getPath(Route.SIGNUP),
   },
   {
     name: 'lobby',
-    path: getPath(Route.PLAYGROUND),
-  }
+    path: getPath(Route.LOBBY),
+  },
 ]
 
 export function NavBar() {
@@ -112,18 +113,19 @@ function NavMenu(props: { show: boolean; onClick: () => void }) {
 }
 
 function SubNav() {
-  const location = useLocation()
-  const { user } = useContext(UserContext)
-  if (!location.pathname.startsWith(getPath(Route.PLAYGROUND))) {
-    // only playground has subnav
-    return null
-  }
+  //const location = useLocation()
+  //const { user } = useContext(UserContext)
+
+  // only playground has subnav
+  return null
+  /*
   return (
     <Nav $isSubNav>
       <NavItem name="surveys" path={getSurveyPath()} />
       <NavItem name={user ? 'logout' : 'login'} path={getLoginPath()} />
     </Nav>
   )
+  */
 }
 
 const Nav = style(

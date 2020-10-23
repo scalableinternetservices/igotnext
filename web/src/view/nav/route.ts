@@ -7,8 +7,8 @@
 export enum Route {
   HOME = 'app/index',
   LOGIN = 'app/lectures',
-  PROJECTS = 'app/projects',
-  PLAYGROUND = 'app/playground',
+  SIGNUP = 'app/projects',
+  LOBBY = 'app/playground',
   PLAYGROUND_APP = 'app/playground/:app',
 }
 
@@ -27,7 +27,7 @@ export function getLoginPath() {
 }
 
 export function getPlaygroundPath() {
-  return getPath(Route.PLAYGROUND)
+  return getPath(Route.LOBBY)
 }
 
 /**
