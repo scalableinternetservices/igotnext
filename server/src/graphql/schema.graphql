@@ -20,6 +20,8 @@ type Query {
 
   surveys: [Survey!]!
   survey (surveyId: Int!): Survey
+
+  match (match_id: Int!): Match
 }
 
 type Mutation {
@@ -39,6 +41,9 @@ type User {
   userType: UserType!
   email: String!
   name: String!
+
+  # techincally optional
+  height: Int
 }
 
 enum UserType { ADMIN, USER }
@@ -87,5 +92,32 @@ type SurveyAnswer {
 input SurveyInput {
   questionId: Int!
   answer: String!
+}
+
+type Court{
+  courtID: Int!
+
+# each Court should correspond to a match
+  match: Match!
+
+}
+
+type Match{
+  matchID: Int!
+
+#Status string
+  status:String!
+
+}
+
+type Aggregate{
+  id: Int!
+
+  listOfMatches: [Match!]!
+
+  listOfCourts: [Court!]!
+
+  listOfUsers: [User!]!
+
 }
 

@@ -24,6 +24,25 @@ export interface FetchUserContext {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: FetchMatches
+// ====================================================
+
+export interface FetchMatches_match {
+  __typename: "Match";
+  matchID: number;
+  status: string;
+}
+
+export interface FetchMatches {
+  match: FetchMatches_match | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: FetchSurveys
 // ====================================================
 
@@ -185,6 +204,21 @@ export interface NextSurveyQuestion {
 
 export interface NextSurveyQuestionVariables {
   surveyId: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Match
+// ====================================================
+
+export interface Match {
+  __typename: "Match";
+  matchID: number;
+  status: string;
 }
 
 /* tslint:disable */
