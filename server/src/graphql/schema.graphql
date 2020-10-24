@@ -30,6 +30,9 @@ type Mutation {
 
   # Moves the survey to the next question (or starts it if it hasn't started). ADMIN only.
   nextSurveyQuestion (surveyId: Int!): Survey
+
+  # add Match
+  addMatch(match_id: Int): Boolean
 }
 
 type Subscription {

@@ -1,6 +1,7 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import { AppRouteParams, PlaygroundApp } from '../nav/route'
+import { addMatchMutation } from '../playground/mutateMatch'
 import { Page } from './Page'
 
 interface PlaygroundPageProps extends RouteComponentProps, AppRouteParams {}
@@ -11,7 +12,8 @@ export function PlaygroundPage(props: PlaygroundPageProps) {
 
 function getPlaygroundApp(app?: PlaygroundApp) {
   if (!app) {
-    return <div>choose an app</div>
+    //onClick={addMatchMutation}
+    return <button onClick={addMatchMutation}> hello</button>
   }
   return <div></div>
   /*

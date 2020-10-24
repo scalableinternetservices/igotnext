@@ -8,8 +8,8 @@ export const fragmentMatch = gql`
 `
 
 export const fetchMatch = gql`
-  query FetchMatches {
-    match {
+  query FetchMatches($matchId: Int!) {
+    match(match_id: $matchId) {
       ...Match
     }
   }

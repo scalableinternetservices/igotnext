@@ -53,6 +53,12 @@ export const graphqlRoot: Resolvers<Context> = {
       ctx.pubsub.publish('SURVEY_UPDATE_' + surveyId, survey)
       return survey
     },
+    addMatch: async (_, {}) => {
+      const match_new = new Match()
+      match_new.status = 'IN PROGRESS'
+      await match_new.save()
+      return true
+    },
   },
   Subscription: {
     surveyUpdates: {

@@ -1040,6 +1040,29 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "addMatch",
+            "description": null,
+            "args": [
+              {
+                "name": "match_id",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,

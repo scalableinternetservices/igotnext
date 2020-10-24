@@ -32,6 +32,7 @@ export interface Mutation {
   __typename?: 'Mutation'
   answerSurvey: Scalars['Boolean']
   nextSurveyQuestion?: Maybe<Survey>
+  addMatch?: Maybe<Scalars['Boolean']>
 }
 
 export interface MutationAnswerSurveyArgs {
@@ -40,6 +41,10 @@ export interface MutationAnswerSurveyArgs {
 
 export interface MutationNextSurveyQuestionArgs {
   surveyId: Scalars['Int']
+}
+
+export interface MutationAddMatchArgs {
+  match_id?: Maybe<Scalars['Int']>
 }
 
 export interface Subscription {
@@ -258,6 +263,12 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationNextSurveyQuestionArgs, 'surveyId'>
+  >
+  addMatch?: Resolver<
+    Maybe<ResolversTypes['Boolean']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationAddMatchArgs, never>
   >
 }
 

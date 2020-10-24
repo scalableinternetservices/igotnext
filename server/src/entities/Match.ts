@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class Match extends BaseEntity {
@@ -8,8 +8,8 @@ export class Match extends BaseEntity {
   // @ManyToOne(() => Aggregate, agg => agg.listOfMatches)
   // agg: Aggregate
 
-  // @CreateDateColumn()
-  // dateOfMatch: Date
+  @CreateDateColumn()
+  dateOfMatch: Date
 
   // done or in-progress
   // will either be "done" or "in-progress" which could be a number but easier to

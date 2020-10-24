@@ -37,6 +37,10 @@ export interface FetchMatches {
   match: FetchMatches_match | null;
 }
 
+export interface FetchMatchesVariables {
+  matchId: number;
+}
+
 /* tslint:disable */
 /* eslint-disable */
 // @generated
@@ -148,6 +152,23 @@ export interface FetchSurvey {
 
 export interface FetchSurveyVariables {
   surveyId: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: AddMatch
+// ====================================================
+
+export interface AddMatch {
+  addMatch: boolean | null;
+}
+
+export interface AddMatchVariables {
+  match_id?: number | null;
 }
 
 /* tslint:disable */
