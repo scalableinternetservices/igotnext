@@ -18,6 +18,7 @@ export interface Query {
   surveys: Array<Survey>
   survey?: Maybe<Survey>
   match?: Maybe<Match>
+  court?: Maybe<Array<Maybe<Court>>>
 }
 
 export interface QuerySurveyArgs {
@@ -28,11 +29,17 @@ export interface QueryMatchArgs {
   match_id: Scalars['Int']
 }
 
+export interface QueryCourtArgs {
+  latitude: Scalars['Int']
+  longitude: Scalars['Int']
+}
+
 export interface Mutation {
   __typename?: 'Mutation'
   answerSurvey: Scalars['Boolean']
   nextSurveyQuestion?: Maybe<Survey>
   addMatch?: Maybe<Scalars['Boolean']>
+  addUserToCourt: Scalars['Boolean']
 }
 
 export interface MutationAnswerSurveyArgs {
@@ -44,7 +51,11 @@ export interface MutationNextSurveyQuestionArgs {
 }
 
 export interface MutationAddMatchArgs {
-  match_id?: Maybe<Scalars['Int']>
+  courtID?: Maybe<Scalars['Int']>
+}
+
+export interface MutationAddUserToCourtArgs {
+  courtID: Scalars['Int']
 }
 
 export interface Subscription {
@@ -104,13 +115,18 @@ export interface SurveyInput {
 export interface Court {
   __typename?: 'Court'
   courtID: Scalars['Int']
-  match: Match
+  courtName: Scalars['String']
+  longitude: Scalars['Int']
+  latitude: Scalars['Int']
+  lobby: Scalars['Int']
+  match?: Maybe<Array<Maybe<Match>>>
 }
 
 export interface Match {
   __typename?: 'Match'
   matchID: Scalars['Int']
   status: Scalars['String']
+  court: Court
 }
 
 export interface Aggregate {
@@ -246,6 +262,12 @@ export type QueryResolvers<
     RequireFields<QuerySurveyArgs, 'surveyId'>
   >
   match?: Resolver<Maybe<ResolversTypes['Match']>, ParentType, ContextType, RequireFields<QueryMatchArgs, 'match_id'>>
+  court?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['Court']>>>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryCourtArgs, 'latitude' | 'longitude'>
+  >
 }
 
 export type MutationResolvers<
@@ -269,6 +291,12 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationAddMatchArgs, never>
+  >
+  addUserToCourt?: Resolver<
+    ResolversTypes['Boolean'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationAddUserToCourtArgs, 'courtID'>
   >
 }
 
@@ -337,7 +365,11 @@ export type CourtResolvers<
   ParentType extends ResolversParentTypes['Court'] = ResolversParentTypes['Court']
 > = {
   courtID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  match?: Resolver<ResolversTypes['Match'], ParentType, ContextType>
+  courtName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  longitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  match?: Resolver<Maybe<Array<Maybe<ResolversTypes['Match']>>>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType>
 }
 
@@ -347,6 +379,7 @@ export type MatchResolvers<
 > = {
   matchID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  court?: Resolver<ResolversTypes['Court'], ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType>
 }
 

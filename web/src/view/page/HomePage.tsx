@@ -16,15 +16,14 @@ import { Page } from './Page'
 
 interface HomePageProps extends RouteComponentProps, AppRouteParams {}
 
-function Welcome() {
-  void addMatchMutation()
-  console.log('HERE')
+function AddToMatch() {
+  void addMatchMutation(3)
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomePage(props: HomePageProps) {
   return (
     <React.Fragment>
-      <button onClick={Welcome}>hello</button>
+      <button onClick={AddToMatch}>hello</button>
       <Page></Page>
     </React.Fragment>
   )
