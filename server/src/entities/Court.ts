@@ -1,5 +1,5 @@
-import { BaseEntity, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Match } from './Match'
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Game } from './Game'
 
 @Entity()
 export class Court extends BaseEntity {
@@ -8,8 +8,18 @@ export class Court extends BaseEntity {
 
   // @ManyToOne(() => Aggregate, agg => agg.listOfCourts)
   // agg: Aggregate
+  @Column() // to identify (for frontend)
+  courtName: string
 
-  @OneToOne(() => Match, { eager: true })
-  @JoinColumn()
-  match: Match
+  @Column() // for location purposes
+  longitude: number
+
+  @Column()
+  latitude: number
+
+  @Column() //lobby should be at max 10
+  lobby: number
+
+  @OneToMany(() => Game, match => match.court)
+  match: Game[]
 }
