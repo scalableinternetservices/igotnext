@@ -1,8 +1,10 @@
+import { float } from 'aws-sdk/clients/lightsail'
 import { readFileSync } from 'fs'
 import { PubSub } from 'graphql-yoga'
 import path from 'path'
 import { check } from '../../../common/src/util'
-import { Match } from '../entities/Match'
+import { Court } from '../entities/Court'
+import { Game } from '../entities/Game'
 import { Survey } from '../entities/Survey'
 import { SurveyAnswer } from '../entities/SurveyAnswer'
 import { SurveyQuestion } from '../entities/SurveyQuestion'
@@ -22,13 +24,50 @@ interface Context {
   response: Response
   pubsub: PubSub
 }
+// Converts numeric degrees to radians
+function toRad(Value: float) {
+  return (Value * Math.PI) / 180
+}
+
+function calcKM(lat1_o: float, lon1_o: float, lat2_o: float, lon2_o: float) {
+  // calculate km distance between two points
+  const R = 6371 // km
+  const dLat = toRad(lat2_o - lat1_o)
+  const dLon = toRad(lon2_o - lon1_o)
+  const lat1 = toRad(lat1_o)
+  const lat2 = toRad(lat2_o)
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2)
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  const d = R * c
+  return d
+}
 
 export const graphqlRoot: Resolvers<Context> = {
   Query: {
     self: (_, args, ctx) => ctx.user,
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
-    match: async (_, { match_id }) => (await Match.findOne({ where: { matchID: match_id } })) || null,
+    match: async (_, { match_id }) => {
+      let result_game: Game | undefined
+      result_game = await Game.findOne({ where: { matchID: match_id } })
+      return result_game ? { matchID: result_game.matchID, status: result_game.status, court: result_game.court } : null
+    }, //await Game.findOne({ where: { matchID: match_id } })) || null
+    court: async (_, { longitude, latitude }) => {
+      const courts = await Court.find()
+      const result: Array<Court> = []
+
+      courts.forEach(element => {
+        if (calcKM(element.latitude, element.longitude, latitude, longitude) < 10) {
+          // we can change distance we want later if need be
+          // simple less than 10 km
+          result.push(element)
+        }
+      })
+
+      return result
+    },
   },
   Mutation: {
     answerSurvey: async (_, { input }, ctx) => {
@@ -53,12 +92,45 @@ export const graphqlRoot: Resolvers<Context> = {
       ctx.pubsub.publish('SURVEY_UPDATE_' + surveyId, survey)
       return survey
     },
-    addMatch: async (_, {}) => {
-      const match_new = new Match()
+    addGame: async (_, { courtID }) => {
+      console.log('HELLO')
+      const match_new = new Game()
       match_new.status = 'IN PROGRESS'
+      const corresponding_court = check(await Court.findOne({ where: { courtID: courtID } }))
+      console.log(corresponding_court)
+
+      if (corresponding_court === null) {
+        return false
+      }
+
+      match_new.court = corresponding_court
+      //await corresponding_court.save() //const saved_match =
       await match_new.save()
+      console.log('the created new match: ', match_new)
+      //corresponding_court.match.push(saved_match)
+      const corresponding_court2 = check(await Game.findOne({ where: { matchID: 6 } }))
+      console.log(corresponding_court2)
+
       return true
     },
+    // addUserToCourt: async (_, { courtID }) => {
+    //   const court_lobby = check(await Court.findOne({ where: { courtID: courtID } }))
+    //   if (court_lobby === null) {
+    //     return false
+    //   }
+
+    //   if (court_lobby.lobby === 9) {
+    //     court_lobby.lobby = 10
+    //     // full so we need to convert it to match
+    //     court_lobby.lobby = 0
+    //     return true
+    //   } else if (court_lobby.lobby <= 8) {
+    //     court_lobby.lobby = court_lobby.lobby + 1
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // },
   },
   Subscription: {
     surveyUpdates: {
