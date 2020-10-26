@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm'
 import { Court } from './Court'
 
 @Entity()
@@ -16,7 +16,8 @@ export class Game extends BaseEntity {
   // will either be "done" or "in-progress" which could be a number but easier to
   // read when coding than remembering nubmers
 
-  @ManyToOne(() => Court, court => court.game)
+  @ManyToOne(() => Court, court => court.game, { eager: true, nullable: false })
+  @JoinColumn()
   court: Court
 
   @Column({

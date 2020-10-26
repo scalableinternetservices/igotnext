@@ -20,6 +20,6 @@ export class Court extends BaseEntity {
   @Column() //lobby should be at max 10
   lobby: number
 
-  @OneToMany(() => Game, game => game.court)
+  @OneToMany(() => Game, game => game.court, { nullable: false })
   game: Game[]
 }

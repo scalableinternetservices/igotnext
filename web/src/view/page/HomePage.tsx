@@ -1,5 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
+import { Button } from '../../style/button'
 import { AppRouteParams } from '../nav/route'
 import { addGameMutation } from '../playground/mutateGame'
 import { Page } from './Page'
@@ -16,14 +17,14 @@ import { Page } from './Page'
 
 interface HomePageProps extends RouteComponentProps, AppRouteParams {}
 
-function AddToMatch() {
-  void addGameMutation(3)
-}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomePage(props: HomePageProps) {
+  const AddToMatch = () => {
+    void addGameMutation(2)
+  }
   return (
     <React.Fragment>
-      <button onClick={AddToMatch}>hello</button>
+      <Button onClick={AddToMatch}>hello</Button>
       <Page></Page>
     </React.Fragment>
   )
