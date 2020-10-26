@@ -7,7 +7,7 @@ export const fragmentCourt = gql`
     longitude
     latitude
     lobby
-    match {
+    game {
       matchID
       status
     }

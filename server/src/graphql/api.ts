@@ -4,7 +4,7 @@ import { PubSub } from 'graphql-yoga'
 import path from 'path'
 import { check } from '../../../common/src/util'
 import { Court } from '../entities/Court'
-import { Match } from '../entities/Match'
+import { Game } from '../entities/Game'
 import { Survey } from '../entities/Survey'
 import { SurveyAnswer } from '../entities/SurveyAnswer'
 import { SurveyQuestion } from '../entities/SurveyQuestion'
@@ -49,7 +49,7 @@ export const graphqlRoot: Resolvers<Context> = {
     self: (_, args, ctx) => ctx.user,
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
-    match: async (_, { match_id }) => (await Match.findOne({ where: { matchID: match_id } })) || null,
+    game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
     court: async (_, { longitude, latitude }) => {
       const courts = await Court.find()
       const result: Array<Court> = []
@@ -88,14 +88,14 @@ export const graphqlRoot: Resolvers<Context> = {
       ctx.pubsub.publish('SURVEY_UPDATE_' + surveyId, survey)
       return survey
     },
-    addMatch: async (_, { courtID }) => {
-      const match_new = new Match()
+    addGame: async (_, { courtID }) => {
+      const match_new = new Game()
       match_new.status = 'IN PROGRESS'
       const corresponding_court = check(await Court.findOne({ where: { courtID: courtID } }))
       match_new.court = corresponding_court
       await match_new.save()
 
-      corresponding_court.match = [match_new]
+      corresponding_court.game = [match_new]
       await corresponding_court.save()
 
       return true

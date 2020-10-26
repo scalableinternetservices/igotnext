@@ -2,7 +2,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, Pr
 import { Court } from './Court'
 
 @Entity()
-export class Match extends BaseEntity {
+export class Game extends BaseEntity {
   @PrimaryGeneratedColumn()
   matchID: number
 
@@ -16,7 +16,7 @@ export class Match extends BaseEntity {
   // will either be "done" or "in-progress" which could be a number but easier to
   // read when coding than remembering nubmers
 
-  @ManyToOne(() => Court, court => court.match)
+  @ManyToOne(() => Court, court => court.game)
   @JoinColumn()
   court: Court
 

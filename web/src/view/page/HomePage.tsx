@@ -1,7 +1,7 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import { AppRouteParams } from '../nav/route'
-import { addMatchMutation } from '../playground/mutateMatch'
+import { addGameMutation } from '../playground/mutateGame'
 import { Page } from './Page'
 /*
 import { H1, H2, H3 } from '../../style/header'
@@ -17,7 +17,7 @@ import { Page } from './Page'
 interface HomePageProps extends RouteComponentProps, AppRouteParams {}
 
 function AddToMatch() {
-  void addMatchMutation(3)
+  void addGameMutation(3)
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomePage(props: HomePageProps) {

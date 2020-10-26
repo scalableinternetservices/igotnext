@@ -956,7 +956,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Match",
+              "name": "Game",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1087,7 +1087,7 @@
             "deprecationReason": null
           },
           {
-            "name": "addMatch",
+            "name": "addGame",
             "description": null,
             "args": [
               {
@@ -1696,7 +1696,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Match",
+                "name": "Game",
                 "ofType": null
               }
             },
@@ -1711,7 +1711,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Match",
+        "name": "Game",
         "description": null,
         "fields": [
           {
@@ -1804,7 +1804,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "Match",
+                    "name": "Game",
                     "ofType": null
                   }
                 }

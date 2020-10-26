@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { Match } from './Match'
+import { Game } from './Game'
 
 @Entity()
 export class Court extends BaseEntity {
@@ -20,6 +20,6 @@ export class Court extends BaseEntity {
   @Column() //lobby should be at max 10
   lobby: number
 
-  @OneToMany(() => Match, match => match.court)
-  match: Match[]
+  @OneToMany(() => Game, game => game.court)
+  game: Game[]
 }
