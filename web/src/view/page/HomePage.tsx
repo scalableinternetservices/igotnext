@@ -1,6 +1,8 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
+import { Button } from '../../style/button'
 import { AppRouteParams } from '../nav/route'
+import { addGameMutation } from '../playground/mutateGame'
 import { Page } from './Page'
 /*
 import { H1, H2, H3 } from '../../style/header'
@@ -17,8 +19,12 @@ interface HomePageProps extends RouteComponentProps, AppRouteParams {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomePage(props: HomePageProps) {
+  const AddToMatch = () => {
+    void addGameMutation(2)
+  }
   return (
     <React.Fragment>
+      <Button onClick={AddToMatch}>hello</Button>
       <Page></Page>
     </React.Fragment>
   )
@@ -164,8 +170,7 @@ export function HomePage(props: HomePageProps) {
         </RContent>
       </Content>
     </Page>
-  )
-  */
+  )*/
 }
 
 /*

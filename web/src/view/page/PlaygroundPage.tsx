@@ -11,7 +11,8 @@ export function PlaygroundPage(props: PlaygroundPageProps) {
 
 function getPlaygroundApp(app?: PlaygroundApp) {
   if (!app) {
-    return <div>choose an app</div>
+    //onClick={addMatchMutation}
+    return <button> hello</button>
   }
   return <div></div>
   /*

@@ -24,17 +24,55 @@ export interface FetchUserContext {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: FetchMatches
+// GraphQL query operation: FetchCourts
 // ====================================================
 
-export interface FetchMatches_match {
-  __typename: "Match";
+export interface FetchCourts_court_game {
+  __typename: "Game";
   matchID: number;
   status: string;
 }
 
-export interface FetchMatches {
-  match: FetchMatches_match | null;
+export interface FetchCourts_court {
+  __typename: "Court";
+  courtID: number;
+  courtName: string;
+  longitude: number;
+  latitude: number;
+  lobby: number;
+  game: (FetchCourts_court_game | null)[] | null;
+}
+
+export interface FetchCourts {
+  court: (FetchCourts_court | null)[] | null;
+}
+
+export interface FetchCourtsVariables {
+  latitude: number;
+  longitude: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: FetchGames
+// ====================================================
+
+export interface FetchGames_game {
+  __typename: "Game";
+  matchID: number;
+  status: string;
+}
+
+export interface FetchGames {
+  game: FetchGames_game | null;
+}
+
+export interface FetchGamesVariables {
+  matchId: number;
 }
 
 /* tslint:disable */
@@ -156,6 +194,40 @@ export interface FetchSurveyVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: AddToCourt
+// ====================================================
+
+export interface AddToCourt {
+  addUserToCourt: boolean;
+}
+
+export interface AddToCourtVariables {
+  court_id: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: AddGame
+// ====================================================
+
+export interface AddGame {
+  addGame: boolean | null;
+}
+
+export interface AddGameVariables {
+  courtID?: number | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: AnswerSurveyQuestion
 // ====================================================
 
@@ -212,11 +284,36 @@ export interface NextSurveyQuestionVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Match
+// GraphQL fragment: Court
 // ====================================================
 
-export interface Match {
-  __typename: "Match";
+export interface Court_game {
+  __typename: "Game";
+  matchID: number;
+  status: string;
+}
+
+export interface Court {
+  __typename: "Court";
+  courtID: number;
+  courtName: string;
+  longitude: number;
+  latitude: number;
+  lobby: number;
+  game: (Court_game | null)[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Game
+// ====================================================
+
+export interface Game {
+  __typename: "Game";
   matchID: number;
   status: string;
 }

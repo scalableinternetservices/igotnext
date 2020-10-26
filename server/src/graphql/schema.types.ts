@@ -17,21 +17,29 @@ export interface Query {
   self?: Maybe<User>
   surveys: Array<Survey>
   survey?: Maybe<Survey>
-  match?: Maybe<Match>
+  game?: Maybe<Game>
+  court?: Maybe<Array<Maybe<Court>>>
 }
 
 export interface QuerySurveyArgs {
   surveyId: Scalars['Int']
 }
 
-export interface QueryMatchArgs {
+export interface QueryGameArgs {
   match_id: Scalars['Int']
+}
+
+export interface QueryCourtArgs {
+  latitude: Scalars['Int']
+  longitude: Scalars['Int']
 }
 
 export interface Mutation {
   __typename?: 'Mutation'
   answerSurvey: Scalars['Boolean']
   nextSurveyQuestion?: Maybe<Survey>
+  addGame?: Maybe<Scalars['Boolean']>
+  addUserToCourt: Scalars['Boolean']
 }
 
 export interface MutationAnswerSurveyArgs {
@@ -40,6 +48,14 @@ export interface MutationAnswerSurveyArgs {
 
 export interface MutationNextSurveyQuestionArgs {
   surveyId: Scalars['Int']
+}
+
+export interface MutationAddGameArgs {
+  courtID?: Maybe<Scalars['Int']>
+}
+
+export interface MutationAddUserToCourtArgs {
+  courtID: Scalars['Int']
 }
 
 export interface Subscription {
@@ -99,19 +115,24 @@ export interface SurveyInput {
 export interface Court {
   __typename?: 'Court'
   courtID: Scalars['Int']
-  match: Match
+  courtName: Scalars['String']
+  longitude: Scalars['Int']
+  latitude: Scalars['Int']
+  lobby: Scalars['Int']
+  game?: Maybe<Array<Maybe<Game>>>
 }
 
-export interface Match {
-  __typename?: 'Match'
+export interface Game {
+  __typename?: 'Game'
   matchID: Scalars['Int']
   status: Scalars['String']
+  court: Court
 }
 
 export interface Aggregate {
   __typename?: 'Aggregate'
   id: Scalars['Int']
-  listOfMatches: Array<Match>
+  listOfMatches: Array<Game>
   listOfCourts: Array<Court>
   listOfUsers: Array<User>
 }
@@ -206,7 +227,7 @@ export type ResolversTypes = {
   SurveyAnswer: ResolverTypeWrapper<SurveyAnswer>
   SurveyInput: SurveyInput
   Court: ResolverTypeWrapper<Court>
-  Match: ResolverTypeWrapper<Match>
+  Game: ResolverTypeWrapper<Game>
   Aggregate: ResolverTypeWrapper<Aggregate>
 }
 
@@ -224,7 +245,7 @@ export type ResolversParentTypes = {
   SurveyAnswer: SurveyAnswer
   SurveyInput: SurveyInput
   Court: Court
-  Match: Match
+  Game: Game
   Aggregate: Aggregate
 }
 
@@ -240,7 +261,13 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QuerySurveyArgs, 'surveyId'>
   >
-  match?: Resolver<Maybe<ResolversTypes['Match']>, ParentType, ContextType, RequireFields<QueryMatchArgs, 'match_id'>>
+  game?: Resolver<Maybe<ResolversTypes['Game']>, ParentType, ContextType, RequireFields<QueryGameArgs, 'match_id'>>
+  court?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['Court']>>>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryCourtArgs, 'latitude' | 'longitude'>
+  >
 }
 
 export type MutationResolvers<
@@ -258,6 +285,18 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationNextSurveyQuestionArgs, 'surveyId'>
+  >
+  addGame?: Resolver<
+    Maybe<ResolversTypes['Boolean']>,
+    ParentType,
+    ContextType,
+    RequireFields<MutationAddGameArgs, never>
+  >
+  addUserToCourt?: Resolver<
+    ResolversTypes['Boolean'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationAddUserToCourtArgs, 'courtID'>
   >
 }
 
@@ -326,16 +365,21 @@ export type CourtResolvers<
   ParentType extends ResolversParentTypes['Court'] = ResolversParentTypes['Court']
 > = {
   courtID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  match?: Resolver<ResolversTypes['Match'], ParentType, ContextType>
+  courtName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  longitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  game?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType>
 }
 
-export type MatchResolvers<
+export type GameResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes['Match'] = ResolversParentTypes['Match']
+  ParentType extends ResolversParentTypes['Game'] = ResolversParentTypes['Game']
 > = {
   matchID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  court?: Resolver<ResolversTypes['Court'], ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType>
 }
 
@@ -344,7 +388,7 @@ export type AggregateResolvers<
   ParentType extends ResolversParentTypes['Aggregate'] = ResolversParentTypes['Aggregate']
 > = {
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  listOfMatches?: Resolver<Array<ResolversTypes['Match']>, ParentType, ContextType>
+  listOfMatches?: Resolver<Array<ResolversTypes['Game']>, ParentType, ContextType>
   listOfCourts?: Resolver<Array<ResolversTypes['Court']>, ParentType, ContextType>
   listOfUsers?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType>
@@ -359,7 +403,7 @@ export type Resolvers<ContextType = any> = {
   SurveyQuestion?: SurveyQuestionResolvers<ContextType>
   SurveyAnswer?: SurveyAnswerResolvers<ContextType>
   Court?: CourtResolvers<ContextType>
-  Match?: MatchResolvers<ContextType>
+  Game?: GameResolvers<ContextType>
   Aggregate?: AggregateResolvers<ContextType>
 }
 

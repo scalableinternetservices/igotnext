@@ -19,9 +19,14 @@ type Query {
   self: User
 
   surveys: [Survey!]!
+
   survey (surveyId: Int!): Survey
 
-  match (match_id: Int!): Match
+
+  game (match_id: Int!): Game
+
+  # search for available courts listed on map
+  court(latitude: Int!, longitude: Int!): [Court]
 }
 
 type Mutation {
@@ -30,6 +35,12 @@ type Mutation {
 
   # Moves the survey to the next question (or starts it if it hasn't started). ADMIN only.
   nextSurveyQuestion (surveyId: Int!): Survey
+
+  # add Game
+  addGame(courtID: Int): Boolean
+
+  # returns True if added successfully and False if not ( to lobby of court that they selected )
+  addUserToCourt(courtID: Int!): Boolean!
 }
 
 type Subscription {
@@ -97,23 +108,34 @@ input SurveyInput {
 type Court{
   courtID: Int!
 
-# each Court should correspond to a match
-  match: Match!
+  courtName: String!
+
+  longitude: Int!
+
+  latitude: Int!
+
+  lobby: Int!
+
+# each Court should correspond to multiple match
+
+  game: [Game]
 
 }
 
-type Match{
+type Game{
   matchID: Int!
 
 #Status string
   status:String!
+
+  court: Court!
 
 }
 
 type Aggregate{
   id: Int!
 
-  listOfMatches: [Match!]!
+  listOfMatches: [Game!]!
 
   listOfCourts: [Court!]!
 
