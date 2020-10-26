@@ -936,7 +936,7 @@
             "deprecationReason": null
           },
           {
-            "name": "match",
+            "name": "game",
             "description": null,
             "args": [
               {
@@ -1688,7 +1688,7 @@
             "deprecationReason": null
           },
           {
-            "name": "match",
+            "name": "game",
             "description": null,
             "args": [],
             "type": {

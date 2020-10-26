@@ -27,7 +27,7 @@ export interface FetchUserContext {
 // GraphQL query operation: FetchCourts
 // ====================================================
 
-export interface FetchCourts_court_match {
+export interface FetchCourts_court_game {
   __typename: "Game";
   matchID: number;
   status: string;
@@ -40,7 +40,7 @@ export interface FetchCourts_court {
   longitude: number;
   latitude: number;
   lobby: number;
-  match: (FetchCourts_court_match | null)[] | null;
+  game: (FetchCourts_court_game | null)[] | null;
 }
 
 export interface FetchCourts {
@@ -61,14 +61,14 @@ export interface FetchCourtsVariables {
 // GraphQL query operation: FetchGames
 // ====================================================
 
-export interface FetchGames_match {
+export interface FetchGames_game {
   __typename: "Game";
   matchID: number;
   status: string;
 }
 
 export interface FetchGames {
-  match: FetchGames_match | null;
+  game: FetchGames_game | null;
 }
 
 export interface FetchGamesVariables {
@@ -287,7 +287,7 @@ export interface NextSurveyQuestionVariables {
 // GraphQL fragment: Court
 // ====================================================
 
-export interface Court_match {
+export interface Court_game {
   __typename: "Game";
   matchID: number;
   status: string;
@@ -300,7 +300,7 @@ export interface Court {
   longitude: number;
   latitude: number;
   lobby: number;
-  match: (Court_match | null)[] | null;
+  game: (Court_game | null)[] | null;
 }
 
 /* tslint:disable */

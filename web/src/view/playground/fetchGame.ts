@@ -9,7 +9,7 @@ export const fragmentGame = gql`
 
 export const fetchGame = gql`
   query FetchGames($matchId: Int!) {
-    match(match_id: $matchId) {
+    game(match_id: $matchId) {
       ...Game
     }
   }

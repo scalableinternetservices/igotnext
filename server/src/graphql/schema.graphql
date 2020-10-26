@@ -22,7 +22,8 @@ type Query {
 
   survey (surveyId: Int!): Survey
 
-  match (match_id: Int!): Game
+
+  game (match_id: Int!): Game
 
   # search for available courts listed on map
   court(latitude: Int!, longitude: Int!): [Court]
@@ -116,7 +117,8 @@ type Court{
   lobby: Int!
 
 # each Court should correspond to multiple match
-  match: [Game]
+
+  game: [Game]
 
 }
 

@@ -16,7 +16,7 @@ export class Game extends BaseEntity {
   // will either be "done" or "in-progress" which could be a number but easier to
   // read when coding than remembering nubmers
 
-  @ManyToOne(() => Court, court => court.match)
+  @ManyToOne(() => Court, court => court.game)
   court: Court
 
   @Column({

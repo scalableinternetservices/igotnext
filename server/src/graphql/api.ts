@@ -49,11 +49,8 @@ export const graphqlRoot: Resolvers<Context> = {
     self: (_, args, ctx) => ctx.user,
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
-    match: async (_, { match_id }) => {
-      let result_game: Game | undefined
-      result_game = await Game.findOne({ where: { matchID: match_id } })
-      return result_game ? { matchID: result_game.matchID, status: result_game.status, court: result_game.court } : null
-    }, //await Game.findOne({ where: { matchID: match_id } })) || null
+    game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
+
     court: async (_, { longitude, latitude }) => {
       const courts = await Court.find()
       const result: Array<Court> = []
@@ -108,8 +105,6 @@ export const graphqlRoot: Resolvers<Context> = {
       await match_new.save()
       console.log('the created new match: ', match_new)
       //corresponding_court.match.push(saved_match)
-      const corresponding_court2 = check(await Game.findOne({ where: { matchID: 6 } }))
-      console.log(corresponding_court2)
 
       return true
     },
