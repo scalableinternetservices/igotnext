@@ -28,8 +28,6 @@ function createSurvey() {
   function useRegistrationForm() {
     const { register, handleSubmit } = useForm<RegistrationFormData>()
     const onSubmit = useCallback((formValues: RegistrationFormData) => {
-      console.log(formValues)
-      console.log(formValues.latitude)
       setlatitude(parseInt(formValues.latitude))
       setlongitude(parseInt(formValues.longitude))
     }, [])

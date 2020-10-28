@@ -90,11 +90,9 @@ export const graphqlRoot: Resolvers<Context> = {
       return survey
     },
     addGame: async (_, { courtID }) => {
-      console.log('HELLO')
+      // TODO: Fix Addition of Games into Games table upon full match
       const match_new = new Game()
-      match_new.status = 'IN PROGRESS'
       const corresponding_court = check(await Court.findOne({ where: { courtID: courtID } }))
-      console.log(corresponding_court)
 
       if (corresponding_court === null) {
         return false
@@ -104,7 +102,6 @@ export const graphqlRoot: Resolvers<Context> = {
 
       await match_new.save()
       console.log('the created new match: ', match_new)
-
       return true
     },
     addUserToCourt: async (_, { courtID }) => {
