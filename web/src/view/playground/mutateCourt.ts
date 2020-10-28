@@ -9,16 +9,16 @@ const courtMutation = gql`
   }
 `
 
-export function addMatchMutationClient(client: ApolloClient<any>, court_ID: number) {
+export function addMatchMutationClient(client: ApolloClient<any>, court_id: number) {
   return client.mutate<FetchCourtsVariables>({
     mutation: courtMutation,
-    variables: { court_ID },
+    variables: { court_id },
   })
 }
 
-export function addCourtMutation(court_ID: number) {
+export function addCourtMutation(court_id: number) {
   return getApolloClient().mutate<FetchCourtsVariables>({
     mutation: courtMutation,
-    variables: { court_ID },
+    variables: { court_id },
   })
 }

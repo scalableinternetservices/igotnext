@@ -108,24 +108,26 @@ export const graphqlRoot: Resolvers<Context> = {
 
       return true
     },
-    // addUserToCourt: async (_, { courtID }) => {
-    //   const court_lobby = check(await Court.findOne({ where: { courtID: courtID } }))
-    //   if (court_lobby === null) {
-    //     return false
-    //   }
+    addUserToCourt: async (_, { courtID }) => {
+      const court_lobby = check(await Court.findOne({ where: { courtID: courtID } }))
+      if (court_lobby === null) {
+        return false
+      }
 
-    //   if (court_lobby.lobby === 9) {
-    //     court_lobby.lobby = 10
-    //     // full so we need to convert it to match
-    //     court_lobby.lobby = 0
-    //     return true
-    //   } else if (court_lobby.lobby <= 8) {
-    //     court_lobby.lobby = court_lobby.lobby + 1
-    //     return true
-    //   } else {
-    //     return false
-    //   }
-    // },
+      if (court_lobby.lobby === 9) {
+        // full so we need to convert it to match
+        // void addGameMutation(courtID)
+        court_lobby.lobby = 0
+        await court_lobby.save()
+        return true
+      } else if (court_lobby.lobby <= 8) {
+        court_lobby.lobby = court_lobby.lobby + 1
+        await court_lobby.save()
+        return true
+      } else {
+        return false
+      }
+    },
   },
   Subscription: {
     surveyUpdates: {
