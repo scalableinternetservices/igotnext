@@ -3,7 +3,6 @@ import { readFileSync } from 'fs'
 import { PubSub } from 'graphql-yoga'
 import path from 'path'
 import { check } from '../../../common/src/util'
-import { addGameMutation } from '../../../web/src/view/playground/mutateGame'
 import { Court } from '../entities/Court'
 import { Game } from '../entities/Game'
 import { Survey } from '../entities/Survey'
@@ -100,11 +99,9 @@ export const graphqlRoot: Resolvers<Context> = {
       }
 
       match_new.court = corresponding_court
-      // await corresponding_court.save() //const saved_match =
-      await match_new.save()
-      console.log('CREATED NEW MATCH : ', match_new)
-      // corresponding_court.match.push(saved_match)
 
+      await match_new.save()
+      console.log('the created new match: ', match_new)
       return true
     },
     addUserToCourt: async (_, { courtID }) => {
@@ -115,7 +112,6 @@ export const graphqlRoot: Resolvers<Context> = {
 
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
-        void addGameMutation(courtID)
         court_lobby.lobby = 0
         await court_lobby.save()
         return true
