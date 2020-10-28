@@ -10,6 +10,7 @@ export enum Route {
   SIGNUP = 'app/projects',
   LOBBY = 'app/playground',
   PLAYGROUND_APP = 'app/playground/:app',
+  INGAME = 'app/in_game',
 }
 
 export enum PlaygroundApp {
@@ -28,6 +29,10 @@ export function getLoginPath() {
 
 export function getPlaygroundPath() {
   return getPath(Route.LOBBY)
+}
+
+export function getGamePath() {
+  return getPath(Route.INGAME)
 }
 
 /**
