@@ -8,6 +8,7 @@ import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
 import { fetchCourt } from './fetchCourt'
 import { addCourtMutation } from './mutateCourt'
+import { addGameMutation } from './mutateGame'
 
 export function Courts() {
   return createSurvey()
@@ -38,9 +39,13 @@ function createSurvey() {
       onSubmit: handleSubmit(onSubmit),
     }
   }
-  function joinGame(courtID: number | undefined) {
+  function joinGame(courtID: number | undefined, lobby: number | undefined) {
     if (courtID !== undefined) {
       void addCourtMutation(courtID)
+      console.log(lobby)
+      if (lobby === 9) {
+        void addGameMutation(courtID)
+      }
     }
   }
 
@@ -61,7 +66,7 @@ function createSurvey() {
         {data?.court?.map((s, i) => (
           <div key={i} className="pa3 br2 mb2 bg-black-10 flex items-center">
             <Link to="/app/in_game">
-              <p onClick={() => joinGame(s?.courtID)}>
+              <p onClick={() => joinGame(s?.courtID, s?.lobby)}>
                 courts : {s?.courtName} : {s?.lobby} / 10
               </p>
             </Link>

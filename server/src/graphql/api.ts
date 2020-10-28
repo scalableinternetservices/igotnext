@@ -101,10 +101,9 @@ export const graphqlRoot: Resolvers<Context> = {
       }
 
       match_new.court = corresponding_court
-      //await corresponding_court.save() //const saved_match =
+
       await match_new.save()
       console.log('the created new match: ', match_new)
-      //corresponding_court.match.push(saved_match)
 
       return true
     },
@@ -116,7 +115,6 @@ export const graphqlRoot: Resolvers<Context> = {
 
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
-        // void addGameMutation(courtID)
         court_lobby.lobby = 0
         await court_lobby.save()
         return true
