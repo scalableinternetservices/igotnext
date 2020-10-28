@@ -5,6 +5,7 @@ import path from 'path'
 import { check } from '../../../common/src/util'
 import { Court } from '../entities/Court'
 import { Game } from '../entities/Game'
+import { Park } from '../entities/Park'
 import { Survey } from '../entities/Survey'
 import { SurveyAnswer } from '../entities/SurveyAnswer'
 import { SurveyQuestion } from '../entities/SurveyQuestion'
@@ -50,7 +51,7 @@ export const graphqlRoot: Resolvers<Context> = {
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
     game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
-
+    park: async (_, {park_id}) => (await Park.findOne({where: {parkID: park_id} })) || null,
     court: async (_, { longitude, latitude }) => {
       const courts = await Court.find()
       const result: Array<Court> = []
