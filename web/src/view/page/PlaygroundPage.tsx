@@ -11,10 +11,10 @@ export function PlaygroundPage(props: PlaygroundPageProps) {
 
 function getPlaygroundApp(app?: PlaygroundApp) {
   if (!app) {
-    //onClick={addMatchMutation}
-    return <button> hello</button>
+    // onClick={addMatchMutation}
+    return <button> hello </button>
   }
-  return <div></div>
+  return <div>You joined a match!</div>
   /*
   switch (app) {
     case PlaygroundApp.SURVEYS:

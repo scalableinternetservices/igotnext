@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client'
+import { Link } from '@reach/router'
 import * as React from 'react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
@@ -7,7 +8,6 @@ import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
 import { fetchCourt } from './fetchCourt'
 import { addCourtMutation } from './mutateCourt'
-import { addGameMutation } from './mutateGame'
 
 export function Courts() {
   return createSurvey()
@@ -27,8 +27,6 @@ function createSurvey() {
   function useRegistrationForm() {
     const { register, handleSubmit } = useForm<RegistrationFormData>()
     const onSubmit = useCallback((formValues: RegistrationFormData) => {
-      console.log(formValues)
-      console.log(formValues.latitude)
       setlatitude(parseInt(formValues.latitude))
       setlongitude(parseInt(formValues.longitude))
     }, [])
@@ -41,7 +39,6 @@ function createSurvey() {
   function joinGame(courtID: number | undefined) {
     if (courtID !== undefined) {
       void addCourtMutation(courtID)
-      void addGameMutation(courtID)
     }
   }
 
@@ -61,9 +58,11 @@ function createSurvey() {
       <div className="mw6">
         {data?.court?.map((s, i) => (
           <div key={i} className="pa3 br2 mb2 bg-black-10 flex items-center">
-            <p onClick={() => joinGame(s?.courtID)}>
-              courts : {s?.courtName} : {s?.lobby} / 10
-            </p>
+            <Link to="/app/in_game">
+              <p onClick={() => joinGame(s?.courtID)}>
+                courts : {s?.courtName} : {s?.lobby} / 10
+              </p>
+            </Link>
           </div>
         ))}
       </div>

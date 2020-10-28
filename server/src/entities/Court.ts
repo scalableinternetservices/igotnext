@@ -8,16 +8,18 @@ export class Court extends BaseEntity {
 
   // @ManyToOne(() => Aggregate, agg => agg.listOfCourts)
   // agg: Aggregate
-  @Column() // to identify (for frontend)
+  // Display name of court
+  @Column()
   courtName: string
 
-  @Column() // for location purposes
+  @Column()
   longitude: number
 
   @Column()
   latitude: number
 
-  @Column() //lobby should be at max 10
+  // Number of players currently on the court, maximum of 10
+  @Column()
   lobby: number
 
   @OneToMany(() => Game, game => game.court, { nullable: false })

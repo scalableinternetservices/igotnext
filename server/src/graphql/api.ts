@@ -3,6 +3,7 @@ import { readFileSync } from 'fs'
 import { PubSub } from 'graphql-yoga'
 import path from 'path'
 import { check } from '../../../common/src/util'
+import { addGameMutation } from '../../../web/src/view/playground/mutateGame'
 import { Court } from '../entities/Court'
 import { Game } from '../entities/Game'
 import { Survey } from '../entities/Survey'
@@ -90,21 +91,19 @@ export const graphqlRoot: Resolvers<Context> = {
       return survey
     },
     addGame: async (_, { courtID }) => {
-      console.log('HELLO')
+      // TODO: Fix Addition of Games into Games table upon full match
       const match_new = new Game()
-      match_new.status = 'IN PROGRESS'
       const corresponding_court = check(await Court.findOne({ where: { courtID: courtID } }))
-      console.log(corresponding_court)
 
       if (corresponding_court === null) {
         return false
       }
 
       match_new.court = corresponding_court
-      //await corresponding_court.save() //const saved_match =
+      // await corresponding_court.save() //const saved_match =
       await match_new.save()
-      console.log('the created new match: ', match_new)
-      //corresponding_court.match.push(saved_match)
+      console.log('CREATED NEW MATCH : ', match_new)
+      // corresponding_court.match.push(saved_match)
 
       return true
     },
@@ -116,7 +115,7 @@ export const graphqlRoot: Resolvers<Context> = {
 
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
-        // void addGameMutation(courtID)
+        void addGameMutation(courtID)
         court_lobby.lobby = 0
         await court_lobby.save()
         return true
