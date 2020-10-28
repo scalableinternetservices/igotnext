@@ -26,7 +26,7 @@ export class Court extends BaseEntity {
   @OneToMany(() => Game, game => game.court, { nullable: false })
   game: Game[]
 
-  @ManyToOne(() => Park, park => park.courts, {nullable: false})
+  @ManyToOne(() => Park, park => park.courts, { nullable: false })
   @JoinColumn()
   park: Park
 }

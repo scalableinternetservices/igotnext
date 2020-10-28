@@ -111,7 +111,7 @@ type Park {
 
   parkName: String!
 
-  courts: [Court!]!
+  courts: [Court]
 }
 
 type Court{

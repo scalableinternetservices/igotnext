@@ -121,7 +121,7 @@ export interface Park {
   __typename?: 'Park'
   parkID: Scalars['Int']
   parkName: Scalars['String']
-  courts: Array<Court>
+  courts?: Maybe<Array<Maybe<Court>>>
 }
 
 export interface Court {
@@ -132,7 +132,7 @@ export interface Court {
   latitude: Scalars['Int']
   lobby: Scalars['Int']
   game?: Maybe<Array<Maybe<Game>>>
-  park?: Maybe<Park>
+  park: Park
 }
 
 export interface Game {
@@ -213,7 +213,11 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   info: GraphQLResolveInfo
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>
 
-export type IsTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
+  obj: T,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => boolean | Promise<boolean>
 
 export type NextResolverFn<T> = () => Promise<T>
 
@@ -338,7 +342,7 @@ export type UserResolvers<
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type SurveyResolvers<
@@ -351,7 +355,7 @@ export type SurveyResolvers<
   isCompleted?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   currentQuestion?: Resolver<Maybe<ResolversTypes['SurveyQuestion']>, ParentType, ContextType>
   questions?: Resolver<Array<Maybe<ResolversTypes['SurveyQuestion']>>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type SurveyQuestionResolvers<
@@ -363,7 +367,7 @@ export type SurveyQuestionResolvers<
   choices?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   answers?: Resolver<Array<ResolversTypes['SurveyAnswer']>, ParentType, ContextType>
   survey?: Resolver<ResolversTypes['Survey'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type SurveyAnswerResolvers<
@@ -373,7 +377,7 @@ export type SurveyAnswerResolvers<
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   answer?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   question?: Resolver<ResolversTypes['SurveyQuestion'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type ParkResolvers<
@@ -382,8 +386,8 @@ export type ParkResolvers<
 > = {
   parkID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   parkName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  courts?: Resolver<Array<ResolversTypes['Court']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  courts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Court']>>>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CourtResolvers<
@@ -396,8 +400,8 @@ export type CourtResolvers<
   latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   game?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
-  park?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  park?: Resolver<ResolversTypes['Park'], ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type GameResolvers<
@@ -407,7 +411,7 @@ export type GameResolvers<
   matchID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   court?: Resolver<ResolversTypes['Court'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type AggregateResolvers<
@@ -418,7 +422,7 @@ export type AggregateResolvers<
   listOfMatches?: Resolver<Array<ResolversTypes['Game']>, ParentType, ContextType>
   listOfCourts?: Resolver<Array<ResolversTypes['Court']>, ParentType, ContextType>
   listOfUsers?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type Resolvers<ContextType = any> = {
