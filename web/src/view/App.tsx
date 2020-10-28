@@ -14,6 +14,7 @@ import { HomePage } from './page/HomePage'
 import { LoginPage } from './page/LoginPage'
 import { PlaygroundPage } from './page/PlaygroundPage'
 import { SignUpPage } from './page/SignUpPage'
+import { StartingMatchPage } from './page/StartingMatch'
 
 const Styletron = require('styletron-engine-monolithic')
 
@@ -57,6 +58,7 @@ export function AppBody() {
         <SignUpPage path={Route.SIGNUP} />
         <PlaygroundPage path={Route.LOBBY} />
         <PlaygroundPage path={Route.PLAYGROUND_APP} />
+        <StartingMatchPage path={Route.INGAME} />
       </Router>
       <Footer>
         <FooterText>© 2020 John Rothfels</FooterText>

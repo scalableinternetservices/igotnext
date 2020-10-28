@@ -14,7 +14,7 @@ function getPlaygroundApp(app?: PlaygroundApp) {
     //onClick={addMatchMutation}
     return <button> hello</button>
   }
-  return <div></div>
+  return <div>You joined a match!</div>
   /*
   switch (app) {
     case PlaygroundApp.SURVEYS:
