@@ -23,6 +23,9 @@ export class Court extends BaseEntity {
   @Column()
   lobby: number
 
+  @Column()
+  roster: string
+
   @OneToMany(() => Game, game => game.court, { nullable: false })
   game: Game[]
 
