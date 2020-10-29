@@ -11,8 +11,8 @@ export function PlaygroundPage(props: PlaygroundPageProps) {
 
 function getPlaygroundApp(app?: PlaygroundApp) {
   if (!app) {
-    //onClick={addMatchMutation}
-    return <button> hello</button>
+    // onClick={addMatchMutation}
+    return <button> hello </button>
   }
   return <div>You joined a match!</div>
   /*

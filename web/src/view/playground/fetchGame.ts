@@ -4,6 +4,7 @@ export const fragmentGame = gql`
   fragment Game on Game {
     matchID
     status
+    roster
   }
 `
 

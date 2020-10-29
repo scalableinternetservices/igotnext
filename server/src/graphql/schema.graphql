@@ -22,11 +22,12 @@ type Query {
 
   survey (surveyId: Int!): Survey
 
-
   game (match_id: Int!): Game
 
   # search for available courts listed on map
   court(latitude: Int!, longitude: Int!): [Court]
+
+  courtind(court_ID: Int!): Court
 }
 
 type Mutation {
@@ -40,7 +41,7 @@ type Mutation {
   addGame(courtID: Int): Boolean
 
   # returns True if added successfully and False if not ( to lobby of court that they selected )
-  addUserToCourt(courtID: Int!): Boolean!
+  addUserToCourt(courtID: Int!, nickname: String): Boolean!
 }
 
 type Subscription {
@@ -120,6 +121,8 @@ type Court{
 
   game: [Game]
 
+  roster: String
+
 }
 
 type Game{
@@ -129,6 +132,8 @@ type Game{
   status:String!
 
   court: Court!
+
+  roster: String
 
 }
 
