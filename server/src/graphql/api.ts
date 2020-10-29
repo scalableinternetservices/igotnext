@@ -65,6 +65,7 @@ export const graphqlRoot: Resolvers<Context> = {
 
       return result
     },
+    courtind: async (_, { court_ID }) => (await Court.findOne({ where: { courtID: court_ID } })) || null,
   },
   Mutation: {
     answerSurvey: async (_, { input }, ctx) => {
@@ -97,22 +98,31 @@ export const graphqlRoot: Resolvers<Context> = {
       if (corresponding_court === null) {
         return false
       }
-
+      const roster_array = corresponding_court.roster.split(',')
+      roster_array.forEach(element => {
+        if (element !== null) {
+          match_new.roster = match_new + element + ','
+        }
+      })
       match_new.court = corresponding_court
 
       await match_new.save()
       console.log('the created new match: ', match_new)
       return true
     },
-    addUserToCourt: async (_, { courtID }) => {
+    addUserToCourt: async (_, { courtID, nickname }) => {
       const court_lobby = check(await Court.findOne({ where: { courtID: courtID } }))
       if (court_lobby === null) {
         return false
+      }
+      if (nickname !== undefined && nickname !== null) {
+        court_lobby.roster = court_lobby.roster + ',' + nickname
       }
 
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
         court_lobby.lobby = 0
+        court_lobby.roster = ''
         await court_lobby.save()
         return true
       } else if (court_lobby.lobby <= 8) {

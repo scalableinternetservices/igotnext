@@ -7,6 +7,7 @@ export const fragmentCourt = gql`
     longitude
     latitude
     lobby
+    roster
     game {
       matchID
       status
@@ -17,6 +18,14 @@ export const fragmentCourt = gql`
 export const fetchCourt = gql`
   query FetchCourts($latitude: Int!, $longitude: Int!) {
     court(latitude: $latitude, longitude: $longitude) {
+      ...Court
+    }
+  }
+  ${fragmentCourt}
+`
+export const fetchCourtID = gql`
+  query FetchCourt($court_ID: Int!) {
+    courtind(court_ID: $court_ID) {
       ...Court
     }
   }

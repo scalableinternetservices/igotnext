@@ -40,6 +40,7 @@ export interface FetchCourts_court {
   longitude: number;
   latitude: number;
   lobby: number;
+  roster: string | null;
   game: (FetchCourts_court_game | null)[] | null;
 }
 
@@ -58,6 +59,40 @@ export interface FetchCourtsVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: FetchCourt
+// ====================================================
+
+export interface FetchCourt_courtind_game {
+  __typename: "Game";
+  matchID: number;
+  status: string;
+}
+
+export interface FetchCourt_courtind {
+  __typename: "Court";
+  courtID: number;
+  courtName: string;
+  longitude: number;
+  latitude: number;
+  lobby: number;
+  roster: string | null;
+  game: (FetchCourt_courtind_game | null)[] | null;
+}
+
+export interface FetchCourt {
+  courtind: FetchCourt_courtind | null;
+}
+
+export interface FetchCourtVariables {
+  court_ID: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: FetchGames
 // ====================================================
 
@@ -65,6 +100,7 @@ export interface FetchGames_game {
   __typename: "Game";
   matchID: number;
   status: string;
+  roster: string | null;
 }
 
 export interface FetchGames {
@@ -203,6 +239,7 @@ export interface AddToCourt {
 
 export interface AddToCourtVariables {
   court_id: number;
+  nickname?: string | null;
 }
 
 /* tslint:disable */
@@ -300,6 +337,7 @@ export interface Court {
   longitude: number;
   latitude: number;
   lobby: number;
+  roster: string | null;
   game: (Court_game | null)[] | null;
 }
 
@@ -316,6 +354,7 @@ export interface Game {
   __typename: "Game";
   matchID: number;
   status: string;
+  roster: string | null;
 }
 
 /* tslint:disable */

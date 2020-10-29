@@ -4,21 +4,21 @@ import { FetchCourtsVariables } from '../../graphql/query.gen'
 // import { fetchCourt, fragmentCourt } from './fetchCourt'
 
 const courtMutation = gql`
-  mutation AddToCourt($court_id: Int!) {
-    addUserToCourt(courtID: $court_id)
+  mutation AddToCourt($court_id: Int!, $nickname: String) {
+    addUserToCourt(courtID: $court_id, nickname: $nickname)
   }
 `
 
-export function addMatchMutationClient(client: ApolloClient<any>, court_id: number) {
+export function addMatchMutationClient(client: ApolloClient<any>, court_id: number, nickname: string) {
   return client.mutate<FetchCourtsVariables>({
     mutation: courtMutation,
-    variables: { court_id },
+    variables: { court_id, nickname },
   })
 }
 
-export function addCourtMutation(court_id: number) {
+export function addCourtMutation(court_id: number, nickname: string) {
   return getApolloClient().mutate<FetchCourtsVariables>({
     mutation: courtMutation,
-    variables: { court_id },
+    variables: { court_id, nickname },
   })
 }

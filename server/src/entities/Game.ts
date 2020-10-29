@@ -16,6 +16,9 @@ export class Game extends BaseEntity {
   @JoinColumn()
   court: Court
 
+  @Column()
+  roster: string
+
   // The game will either be 'IN_PROGRESS' or 'FINISHED'
   @Column({
     length: 20,
