@@ -22,6 +22,7 @@ type Query {
 
   survey (surveyId: Int!): Survey
 
+  park (park_id: Int!): Park
 
   game (match_id: Int!): Game
 
@@ -105,6 +106,14 @@ input SurveyInput {
   answer: String!
 }
 
+type Park {
+  parkID: Int!
+
+  parkName: String!
+
+  courts: [Court]
+}
+
 type Court{
   courtID: Int!
 
@@ -119,6 +128,8 @@ type Court{
 # each Court should correspond to multiple match
 
   game: [Game]
+
+  park: Park
 
 }
 

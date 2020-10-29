@@ -17,12 +17,17 @@ export interface Query {
   self?: Maybe<User>
   surveys: Array<Survey>
   survey?: Maybe<Survey>
+  park?: Maybe<Park>
   game?: Maybe<Game>
   court?: Maybe<Array<Maybe<Court>>>
 }
 
 export interface QuerySurveyArgs {
   surveyId: Scalars['Int']
+}
+
+export interface QueryParkArgs {
+  park_id: Scalars['Int']
 }
 
 export interface QueryGameArgs {
@@ -112,6 +117,13 @@ export interface SurveyInput {
   answer: Scalars['String']
 }
 
+export interface Park {
+  __typename?: 'Park'
+  parkID: Scalars['Int']
+  parkName: Scalars['String']
+  courts?: Maybe<Array<Maybe<Court>>>
+}
+
 export interface Court {
   __typename?: 'Court'
   courtID: Scalars['Int']
@@ -120,6 +132,7 @@ export interface Court {
   latitude: Scalars['Int']
   lobby: Scalars['Int']
   game?: Maybe<Array<Maybe<Game>>>
+  park: Park
 }
 
 export interface Game {
@@ -200,7 +213,11 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   info: GraphQLResolveInfo
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>
 
-export type IsTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
+  obj: T,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => boolean | Promise<boolean>
 
 export type NextResolverFn<T> = () => Promise<T>
 
@@ -226,6 +243,7 @@ export type ResolversTypes = {
   SurveyQuestion: ResolverTypeWrapper<SurveyQuestion>
   SurveyAnswer: ResolverTypeWrapper<SurveyAnswer>
   SurveyInput: SurveyInput
+  Park: ResolverTypeWrapper<Park>
   Court: ResolverTypeWrapper<Court>
   Game: ResolverTypeWrapper<Game>
   Aggregate: ResolverTypeWrapper<Aggregate>
@@ -244,6 +262,7 @@ export type ResolversParentTypes = {
   SurveyQuestion: SurveyQuestion
   SurveyAnswer: SurveyAnswer
   SurveyInput: SurveyInput
+  Park: Park
   Court: Court
   Game: Game
   Aggregate: Aggregate
@@ -261,6 +280,7 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QuerySurveyArgs, 'surveyId'>
   >
+  park?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType, RequireFields<QueryParkArgs, 'park_id'>>
   game?: Resolver<Maybe<ResolversTypes['Game']>, ParentType, ContextType, RequireFields<QueryGameArgs, 'match_id'>>
   court?: Resolver<
     Maybe<Array<Maybe<ResolversTypes['Court']>>>,
@@ -322,7 +342,7 @@ export type UserResolvers<
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type SurveyResolvers<
@@ -335,7 +355,7 @@ export type SurveyResolvers<
   isCompleted?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   currentQuestion?: Resolver<Maybe<ResolversTypes['SurveyQuestion']>, ParentType, ContextType>
   questions?: Resolver<Array<Maybe<ResolversTypes['SurveyQuestion']>>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type SurveyQuestionResolvers<
@@ -347,7 +367,7 @@ export type SurveyQuestionResolvers<
   choices?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   answers?: Resolver<Array<ResolversTypes['SurveyAnswer']>, ParentType, ContextType>
   survey?: Resolver<ResolversTypes['Survey'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type SurveyAnswerResolvers<
@@ -357,7 +377,17 @@ export type SurveyAnswerResolvers<
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   answer?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   question?: Resolver<ResolversTypes['SurveyQuestion'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}
+
+export type ParkResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Park'] = ResolversParentTypes['Park']
+> = {
+  parkID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  parkName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  courts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Court']>>>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CourtResolvers<
@@ -370,7 +400,8 @@ export type CourtResolvers<
   latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   game?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  park?: Resolver<ResolversTypes['Park'], ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type GameResolvers<
@@ -380,7 +411,7 @@ export type GameResolvers<
   matchID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   court?: Resolver<ResolversTypes['Court'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type AggregateResolvers<
@@ -391,7 +422,7 @@ export type AggregateResolvers<
   listOfMatches?: Resolver<Array<ResolversTypes['Game']>, ParentType, ContextType>
   listOfCourts?: Resolver<Array<ResolversTypes['Court']>, ParentType, ContextType>
   listOfUsers?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type Resolvers<ContextType = any> = {
@@ -402,6 +433,7 @@ export type Resolvers<ContextType = any> = {
   Survey?: SurveyResolvers<ContextType>
   SurveyQuestion?: SurveyQuestionResolvers<ContextType>
   SurveyAnswer?: SurveyAnswerResolvers<ContextType>
+  Park?: ParkResolvers<ContextType>
   Court?: CourtResolvers<ContextType>
   Game?: GameResolvers<ContextType>
   Aggregate?: AggregateResolvers<ContextType>

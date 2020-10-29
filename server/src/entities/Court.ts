@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Game } from './Game'
+import { Park } from './Park'
 
 @Entity()
 export class Court extends BaseEntity {
@@ -24,4 +25,8 @@ export class Court extends BaseEntity {
 
   @OneToMany(() => Game, game => game.court, { nullable: false })
   game: Game[]
+
+  @ManyToOne(() => Park, park => park.courts, { nullable: false })
+  @JoinColumn()
+  park: Park
 }
