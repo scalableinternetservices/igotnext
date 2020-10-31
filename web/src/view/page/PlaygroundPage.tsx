@@ -11,18 +11,7 @@ export function PlaygroundPage(props: PlaygroundPageProps) {
 
 function getPlaygroundApp(app?: PlaygroundApp) {
   if (!app) {
-    // onClick={addMatchMutation}
     return <button> hello </button>
   }
-  return <div>You joined a match!</div>
-  /*
-  switch (app) {
-    case PlaygroundApp.SURVEYS:
-      return <Surveys />
-    case PlaygroundApp.LOGIN:
-      return <Login />
-    default:
-      throw new Error('no app found')
-  }
-  */
+  return <div>Game Histories</div>
 }

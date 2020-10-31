@@ -51,7 +51,7 @@ export const graphqlRoot: Resolvers<Context> = {
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
     game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
-    park: async (_, {park_id}) => (await Park.findOne({where: {parkID: park_id} })) || null,
+    park: async (_, { park_id }) => (await Park.findOne({ where: { parkID: park_id } })) || null,
     court: async (_, { longitude, latitude }) => {
       const courts = await Court.find()
       const result: Array<Court> = []
@@ -92,13 +92,13 @@ export const graphqlRoot: Resolvers<Context> = {
       return survey
     },
     addGame: async (_, { courtID }) => {
-      // TODO: Fix Addition of Games into Games table upon full match
       const match_new = new Game()
       const corresponding_court = check(await Court.findOne({ where: { courtID: courtID } }))
 
       if (corresponding_court === null) {
         return false
       }
+      console.log('add game:', corresponding_court)
       const roster_array = corresponding_court.roster.split(',')
       roster_array.forEach(element => {
         if (element !== null) {
@@ -108,7 +108,6 @@ export const graphqlRoot: Resolvers<Context> = {
       match_new.court = corresponding_court
 
       await match_new.save()
-      console.log('the created new match: ', match_new)
       return true
     },
     addUserToCourt: async (_, { courtID, nickname }) => {
@@ -122,12 +121,19 @@ export const graphqlRoot: Resolvers<Context> = {
 
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
+        const match_new = new Game()
+        match_new.roster = court_lobby.roster
+        match_new.court = court_lobby
+        match_new.status = 'FINISHED'
+        await match_new.save()
+
         court_lobby.lobby = 0
         court_lobby.roster = ''
         await court_lobby.save()
         return true
       } else if (court_lobby.lobby <= 8) {
         court_lobby.lobby = court_lobby.lobby + 1
+
         await court_lobby.save()
         return true
       } else {

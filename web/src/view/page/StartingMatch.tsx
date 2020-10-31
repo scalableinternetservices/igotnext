@@ -1,4 +1,3 @@
-
 import { useQuery } from '@apollo/client'
 import { RouteComponentProps, useLocation } from '@reach/router'
 import * as React from 'react'
@@ -18,8 +17,9 @@ export function StartingMatchPage(props: ProjectsPageProps) {
 
   const { data } = useQuery<FetchCourt, FetchCourtVariables>(fetchCourtID, {
     variables: { court_ID: parseInt(gameID) },
+    pollInterval: 200,
   })
-  console.log(rosterConversion(data?.courtind?.roster))
+  // window.location.reload(false)
   return (
     <Page>
       <h1>YOU JOINED MATCH {gameID}</h1>
@@ -43,4 +43,3 @@ function rosterConversion(roster: string | null | undefined) {
   result = result.filter(word => word.length > 0)
   return result
 }
-
