@@ -31,6 +31,8 @@ type Query {
   court(latitude: Int!, longitude: Int!): [Court]
 
   courtind(court_ID: Int!): Court
+
+  allGames: [Game]
 }
 
 type Mutation {

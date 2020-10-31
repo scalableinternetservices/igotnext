@@ -14,12 +14,12 @@ export enum Route {
 }
 
 export enum PlaygroundApp {
-  SURVEYS = 'surveys',
+  MATCH = 'match',
   LOGIN = 'login',
 }
 
 export function getSurveyPath(surveyId?: number) {
-  const path = getPath(Route.PLAYGROUND_APP, { app: PlaygroundApp.SURVEYS })
+  const path = getPath(Route.PLAYGROUND_APP, { app: PlaygroundApp.MATCH })
   return path + (surveyId ? `?surveyId=${surveyId}` : '')
 }
 
@@ -30,7 +30,6 @@ export function getLoginPath() {
 export function getPlaygroundPath() {
   return getPath(Route.LOBBY)
 }
-
 
 export function getGamePath(gameID?: number) {
   console.log(gameID)

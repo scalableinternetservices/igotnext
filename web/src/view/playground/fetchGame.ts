@@ -16,3 +16,12 @@ export const fetchGame = gql`
   }
   ${fragmentGame}
 `
+
+export const fetchAllGames = gql`
+  query FetchAllGames {
+    allGames {
+      ...Game
+    }
+  }
+  ${fragmentGame}
+`
