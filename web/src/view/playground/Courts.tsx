@@ -8,7 +8,7 @@ import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
 import { fetchCourt } from './fetchCourt'
 import { addCourtMutation } from './mutateCourt'
-import { addGameMutation } from './mutateGame'
+// import { addGameMutation } from './mutateGame'
 
 export function Courts() {
   return createSurvey()
@@ -21,6 +21,7 @@ function createSurvey() {
   const [GameQuery, setGameID] = React.useState('')
   const { data } = useQuery<FetchCourts, FetchCourtsVariables>(fetchCourt, {
     variables: { latitude: input_latitude, longitude: input_longitude },
+    pollInterval: 200,
   })
   interface RegistrationFormData {
     latitude: string
@@ -41,14 +42,19 @@ function createSurvey() {
       onSubmit: handleSubmit(onSubmit),
     }
   }
-  function joinGame(courtID: number | undefined, lobby: number | undefined, nickname: string) {
+  async function joinGame(courtID: number | undefined, nickname: string) {
     if (courtID !== undefined) {
-      void addCourtMutation(courtID, nickname)
+      await addCourtMutation(courtID, nickname)
+      // if (lobby === 9) {
+      //   void addGameMutation(courtID)
+      // }
+    }
+  }
+
+  function changeResultPage(courtID: number | undefined) {
+    // should change link to reflect correct game match
+    if (courtID !== undefined) {
       setGameID('/app/in_game/?gameID=' + courtID.toString() + '.' + input_latitude + '.' + input_longitude)
-      console.log(lobby)
-      if (lobby === 9) {
-        void addGameMutation(courtID)
-      }
     }
   }
 
@@ -65,14 +71,18 @@ function createSurvey() {
         <input name="nickname" type="nickname" ref={register} />
         <Spacer $h4 />
         <Button>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Find Courts" />
         </Button>
       </form>
       <div className="mw6">
         {data?.court?.map((s, i) => (
           <div key={i} className="pa3 br2 mb2 bg-black-10 flex items-center">
             <Link to={GameQuery}>
-              <p onClick={() => joinGame(s?.courtID, s?.lobby, nickname)}>
+              <p
+                onMouseEnter={() => changeResultPage(s?.courtID)}
+                onMouseLeave={() => setGameID('')}
+                onClick={() => joinGame(s?.courtID, nickname)}
+              >
                 courts : {s?.courtName} : {s?.lobby} / 10
               </p>
             </Link>
