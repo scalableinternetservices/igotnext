@@ -1110,6 +1110,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "allGames",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Game",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -1881,20 +1897,14 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Park",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "Park",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
-
           {
-
             "name": "roster",
             "description": null,
             "args": [],
