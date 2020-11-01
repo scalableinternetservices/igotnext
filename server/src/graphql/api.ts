@@ -118,7 +118,6 @@ export const graphqlRoot: Resolvers<Context> = {
       if (nickname !== undefined && nickname !== null) {
         court_lobby.roster = court_lobby.roster + ',' + nickname
       }
-
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
         const match_new = new Game()
@@ -133,12 +132,55 @@ export const graphqlRoot: Resolvers<Context> = {
         return true
       } else if (court_lobby.lobby <= 8) {
         court_lobby.lobby = court_lobby.lobby + 1
-
         await court_lobby.save()
         return true
       } else {
         return false
       }
+    },
+    swapFeaturedCourt: async (_, { courtID }) => {
+      const featured_court = check(await Court.findOne({ where: { featured: true } }))
+      // if no featured courts, we ignore the feature
+      if (featured_court === null) {
+        return false
+      }
+      // otherwise, swap which court is featured (one maximum)
+      const featured_id = featured_court.courtID
+
+      console.log(' B I G  S A D (feature_id num): ')
+      console.log(featured_id)
+
+      const feature_rand = check(await Court.findOne({ where: { courtID: courtID } }))
+      if (feature_rand !== null) {
+        feature_rand.featured = true
+        await feature_rand.save()
+        featured_court.featured = false
+        await featured_court.save()
+        console.log('GOING RANDOM!')
+        return true
+      }
+
+      const feature_up = check(await Court.findOne({ where: { courtID: featured_id + 1 } }))
+      if (feature_up !== null) {
+        feature_up.featured = true
+        await feature_up.save()
+        featured_court.featured = false
+        await featured_court.save()
+        console.log('GOING UP!')
+        return true
+      }
+
+      const feature_down = check(await Court.findOne({ where: { courtID: featured_id - 1 } }))
+      if (featured_id > 1 && feature_down !== null) {
+        feature_down.featured = true
+        await feature_down.save()
+        featured_court.featured = false
+        await featured_court.save()
+        console.log('GOING DOWN!')
+        return true
+      }
+
+      return false
     },
   },
   Subscription: {

@@ -1253,6 +1253,37 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "swapFeaturedCourt",
+            "description": null,
+            "args": [
+              {
+                "name": "courtID",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -1861,6 +1892,22 @@
             "deprecationReason": null
           },
           {
+            "name": "featured",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "game",
             "description": null,
             "args": [],
@@ -1881,20 +1928,14 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Park",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "Park",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
-
           {
-
             "name": "roster",
             "description": null,
             "args": [],

@@ -31,7 +31,6 @@ export function getPlaygroundPath() {
   return getPath(Route.LOBBY)
 }
 
-
 export function getGamePath(gameID?: number) {
   console.log(gameID)
   const path = getPath(Route.INGAME)
