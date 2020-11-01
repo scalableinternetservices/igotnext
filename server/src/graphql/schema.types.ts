@@ -51,6 +51,7 @@ export interface Mutation {
   nextSurveyQuestion?: Maybe<Survey>
   addGame?: Maybe<Scalars['Boolean']>
   addUserToCourt: Scalars['Boolean']
+  swapFeaturedCourt: Scalars['Boolean']
 }
 
 export interface MutationAnswerSurveyArgs {
@@ -68,6 +69,10 @@ export interface MutationAddGameArgs {
 export interface MutationAddUserToCourtArgs {
   courtID: Scalars['Int']
   nickname?: Maybe<Scalars['String']>
+}
+
+export interface MutationSwapFeaturedCourtArgs {
+  courtID: Scalars['Int']
 }
 
 export interface Subscription {
@@ -138,6 +143,7 @@ export interface Court {
   longitude: Scalars['Int']
   latitude: Scalars['Int']
   lobby: Scalars['Int']
+  featured: Scalars['Boolean']
   game?: Maybe<Array<Maybe<Game>>>
   park?: Maybe<Park>
   roster?: Maybe<Scalars['String']>
@@ -334,6 +340,12 @@ export type MutationResolvers<
     ContextType,
     RequireFields<MutationAddUserToCourtArgs, 'courtID'>
   >
+  swapFeaturedCourt?: Resolver<
+    ResolversTypes['Boolean'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationSwapFeaturedCourtArgs, 'courtID'>
+  >
 }
 
 export type SubscriptionResolvers<
@@ -415,6 +427,7 @@ export type CourtResolvers<
   longitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  featured?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   game?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
   park?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType>
   roster?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
