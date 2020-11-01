@@ -51,7 +51,6 @@ export interface Mutation {
   nextSurveyQuestion?: Maybe<Survey>
   addGame?: Maybe<Scalars['Boolean']>
   addUserToCourt: Scalars['Boolean']
-  swapFeaturedCourt: Scalars['Boolean']
 }
 
 export interface MutationAnswerSurveyArgs {
@@ -69,10 +68,6 @@ export interface MutationAddGameArgs {
 export interface MutationAddUserToCourtArgs {
   courtID: Scalars['Int']
   nickname?: Maybe<Scalars['String']>
-}
-
-export interface MutationSwapFeaturedCourtArgs {
-  courtID: Scalars['Int']
 }
 
 export interface Subscription {
@@ -339,12 +334,6 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationAddUserToCourtArgs, 'courtID'>
-  >
-  swapFeaturedCourt?: Resolver<
-    ResolversTypes['Boolean'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationSwapFeaturedCourtArgs, 'courtID'>
   >
 }
 

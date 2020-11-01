@@ -8,6 +8,7 @@ export const fragmentCourt = gql`
     latitude
     lobby
     roster
+    featured
     game {
       matchID
       status

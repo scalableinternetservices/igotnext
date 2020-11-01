@@ -47,10 +47,7 @@ type Mutation {
 
   # Returns True if added successfully and False if not ( to lobby of court that they selected )
   addUserToCourt(courtID: Int!, nickname: String): Boolean!
-
-  # Changes which court has the featured flag as True
-  swapFeaturedCourt(courtID: Int!): Boolean!
-}
+  }
 
 type Subscription {
   surveyUpdates (surveyId: Int!): Survey

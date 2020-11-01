@@ -3,3 +3,7 @@ insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`ro
 insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`roster`,`featured`) values ('UCSD',-117.307896,33.302269,0,1,"",false);
 insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`roster`,`featured`) values ('UCBerkley',-117.307896,33.302269,0,1,"",false);
 insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`roster`,`featured`) values ('UCUCMERCED',-117.307896,33.302269,0,1,"",false);
+
+insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`roster`,`featured`) values ('Atlantis',1,1,0,1,"",false);
+insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`roster`,`featured`) values ('El Dorado',1,1,0,1,"",false);
+insert into `court` (`courtname`,`longitude`,`latitude`,`lobby`,`parkParkID`,`roster`,`featured`) values ('Shangri-La',1,1,0,1,"",false);
