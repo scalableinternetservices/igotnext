@@ -139,10 +139,11 @@ export const graphqlRoot: Resolvers<Context> = {
         return false
       }
     },
-  Subscription: {
-    surveyUpdates: {
-      subscribe: (_, { surveyId }, context) => context.pubsub.asyncIterator('SURVEY_UPDATE_' + surveyId),
-      resolve: (payload: any) => payload,
-    },
+    // Subscription: {
+    //   // surveyUpdates: {
+    //   //   subscribe: (_, { surveyId }, context) => context.pubsub.asyncIterator('SURVEY_UPDATE_' + surveyId),
+    //   //   resolve: (payload: any) => payload,
+    //   // },
+    // },
   },
 }
