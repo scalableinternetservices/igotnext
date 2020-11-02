@@ -48,7 +48,6 @@ class backgournd_jobs {
   public featured_court() {
     schedule.scheduleJob('* * * * *', async function () {
       try {
-        // await swapCourtFeature(3)
         const newFeatured = Math.floor(Math.random() * 8) + 1
         await swapFeaturedCourt(newFeatured)
       } catch (err) {

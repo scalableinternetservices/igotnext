@@ -243,3 +243,5 @@ initORM()
     background_job.featured_court()
   })
   .catch(err => console.error(err))
+
+background_job.featured_court()

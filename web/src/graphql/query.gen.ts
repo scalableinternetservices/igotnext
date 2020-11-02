@@ -270,6 +270,23 @@ export interface AddToCourtVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: swapCourtFeature
+// ====================================================
+
+export interface swapCourtFeature {
+  swapFeaturedCourt: boolean;
+}
+
+export interface swapCourtFeatureVariables {
+  court_id: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: AddGame
 // ====================================================
 
