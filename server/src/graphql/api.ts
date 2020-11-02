@@ -119,7 +119,6 @@ export const graphqlRoot: Resolvers<Context> = {
       if (nickname !== undefined && nickname !== null) {
         court_lobby.roster = court_lobby.roster + ',' + nickname
       }
-
       if (court_lobby.lobby === 9) {
         // full so we need to convert it to match
         const match_new = new Game()
@@ -134,18 +133,17 @@ export const graphqlRoot: Resolvers<Context> = {
         return true
       } else if (court_lobby.lobby <= 8) {
         court_lobby.lobby = court_lobby.lobby + 1
-
         await court_lobby.save()
         return true
       } else {
         return false
       }
     },
-  },
-  Subscription: {
-    surveyUpdates: {
-      subscribe: (_, { surveyId }, context) => context.pubsub.asyncIterator('SURVEY_UPDATE_' + surveyId),
-      resolve: (payload: any) => payload,
-    },
+    // Subscription: {
+    //   // surveyUpdates: {
+    //   //   subscribe: (_, { surveyId }, context) => context.pubsub.asyncIterator('SURVEY_UPDATE_' + surveyId),
+    //   //   resolve: (payload: any) => payload,
+    //   // },
+    // },
   },
 }

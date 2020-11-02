@@ -41,6 +41,7 @@ export interface FetchCourts_court {
   latitude: number
   lobby: number
   roster: string | null
+  featured: boolean
   game: (FetchCourts_court_game | null)[] | null
 }
 
@@ -76,6 +77,7 @@ export interface FetchCourt_courtind {
   latitude: number
   lobby: number
   roster: string | null
+  featured: boolean
   game: (FetchCourt_courtind_game | null)[] | null
 }
 
@@ -268,6 +270,23 @@ export interface AddToCourtVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: swapCourtFeature
+// ====================================================
+
+export interface swapCourtFeature {
+  swapFeaturedCourt: boolean
+}
+
+export interface swapCourtFeatureVariables {
+  court_id: number
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: AddGame
 // ====================================================
 
@@ -358,6 +377,7 @@ export interface Court {
   latitude: number
   lobby: number
   roster: string | null
+  featured: boolean
   game: (Court_game | null)[] | null
 }
 

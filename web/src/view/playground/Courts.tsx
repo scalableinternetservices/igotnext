@@ -58,6 +58,19 @@ function createSurvey() {
     }
   }
 
+  // Display text under the current featured court
+  interface DisplayCourtProps {
+    featured: boolean | undefined
+  }
+  function DisplayCourt(props: DisplayCourtProps): React.ReactElement | null {
+    const featured = props.featured
+
+    if (featured) {
+      return <p>[FEATURED COURT]</p>
+    }
+    return <p></p>
+  }
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -83,7 +96,8 @@ function createSurvey() {
                 onMouseLeave={() => setGameID('')}
                 onClick={() => joinGame(s?.courtID, nickname)}
               >
-                courts : {s?.courtName} : {s?.lobby} / 10
+                {s?.courtName} ({s?.lobby} / 10)
+                <DisplayCourt featured={s?.featured} />
               </p>
             </Link>
           </div>

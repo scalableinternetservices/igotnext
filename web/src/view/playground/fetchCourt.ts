@@ -8,6 +8,7 @@ export const fragmentCourt = gql`
     latitude
     lobby
     roster
+    featured
     game {
       matchID
       status
@@ -25,7 +26,7 @@ export const fetchCourt = gql`
 `
 export const fetchCourtID = gql`
   query FetchCourt($court_ID: Int!) {
-    courtind(court_ID: $court_ID) {
+    courtind(courtID: $court_ID) {
       ...Court
     }
   }
