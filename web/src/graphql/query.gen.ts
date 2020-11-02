@@ -262,6 +262,26 @@ export interface AddToCourt {
 export interface AddToCourtVariables {
   court_id: number;
   nickname?: string | null;
+<<<<<<< HEAD
+=======
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: swapCourtFeature
+// ====================================================
+
+export interface swapCourtFeature {
+  swapFeaturedCourt: boolean;
+}
+
+export interface swapCourtFeatureVariables {
+  court_id: number;
+>>>>>>> c7edc9d2ec88046a28c89e5882a3035a2d0d1959
 }
 
 /* tslint:disable */
