@@ -137,9 +137,9 @@ export interface Court {
   courtID: Scalars['Int']
   courtName: Scalars['String']
   lobby: Scalars['Int']
+  featured: Scalars['Boolean']
   game?: Maybe<Array<Maybe<Game>>>
   park?: Maybe<Park>
-  featured: Scalars['Boolean']
   roster?: Maybe<Scalars['String']>
 }
 
@@ -414,9 +414,9 @@ export type CourtResolvers<
   courtID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   courtName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  featured?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   game?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
   park?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType>
-  featured?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   roster?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }

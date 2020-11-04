@@ -26,4 +26,8 @@ export class Court extends BaseEntity {
   @ManyToOne(() => Park, park => park.courts, { nullable: false })
   @JoinColumn()
   park: Park
+
+  // Randomly generate featured courts to promote activity
+  @Column()
+  featured: boolean
 }

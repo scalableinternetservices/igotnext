@@ -126,13 +126,14 @@ type Court{
 
   lobby: Int!
 
+  # each Court should correspond to multiple match
+  featured: Boolean!
+
 # each Court should correspond to multiple match
 
   game: [Game]
 
   park: Park
-
-  featured: Boolean!
 
   roster: String
 
