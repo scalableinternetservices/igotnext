@@ -15,7 +15,7 @@ export const fragmentCourt = gql`
 `
 export const fetchCourtID = gql`
   query FetchCourt($court_ID: Int!) {
-    courtind(courtID: $court_ID) {
+    courtind(court_ID: $court_ID) {
       ...Court
     }
   }
