@@ -29,6 +29,8 @@ type Query {
   park(latitude: Int!, longitude: Int!): [Park]
 
   courtind(court_ID: Int!): Court
+
+  allGames: [Game]
 }
 
 type Mutation {
@@ -38,12 +40,12 @@ type Mutation {
   # Moves the survey to the next question (or starts it if it hasn't started). ADMIN only.
   nextSurveyQuestion (surveyId: Int!): Survey
 
-  # add Game
+  # Adds game
   addGame(courtID: Int): Boolean
 
-  # returns True if added successfully and False if not ( to lobby of court that they selected )
+  # Returns True if added successfully and False if not ( to lobby of court that they selected )
   addUserToCourt(courtID: Int!, nickname: String): Boolean!
-}
+  }
 
 type Subscription {
   surveyUpdates (surveyId: Int!): Survey
@@ -126,24 +128,22 @@ type Court{
 
   lobby: Int!
 
-  # each Court should correspond to multiple match
+
   featured: Boolean!
 
-# each Court should correspond to multiple match
 
+  # each Court may correspond to multiple games
   game: [Game]
 
   park: Park
 
   roster: String
-
 }
 
 type Game{
   matchID: Int!
 
-#Status string
-  status:String!
+  status: String!
 
   court: Court!
 

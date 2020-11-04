@@ -39,7 +39,7 @@ const otherTabs = [
     path: getPath(Route.SIGNUP),
   },
   {
-    name: 'lobby',
+    name: 'Match History',
     path: getPath(Route.LOBBY),
   },
 ]

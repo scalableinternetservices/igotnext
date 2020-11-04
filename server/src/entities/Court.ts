@@ -20,6 +20,10 @@ export class Court extends BaseEntity {
   @Column()
   roster: string
 
+  // Randomly generate featured courts to promote activity
+  @Column()
+  featured: boolean
+
   @OneToMany(() => Game, game => game.court, { nullable: false })
   game: Game[]
 

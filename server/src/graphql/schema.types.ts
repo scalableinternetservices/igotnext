@@ -21,6 +21,7 @@ export interface Query {
   parkind?: Maybe<Park>
   park?: Maybe<Array<Maybe<Park>>>
   courtind?: Maybe<Court>
+  allGames?: Maybe<Array<Maybe<Game>>>
 }
 
 export interface QuerySurveyArgs {
@@ -303,6 +304,7 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryCourtindArgs, 'court_ID'>
   >
+  allGames?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
 }
 
 export type MutationResolvers<

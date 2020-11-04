@@ -17,6 +17,7 @@ import path from 'path'
 import 'reflect-metadata'
 import { v4 as uuidv4 } from 'uuid'
 import { checkEqual, Unpromise } from '../../common/src/util'
+import background_job from './background_job'
 import { Config } from './config'
 import { migrate } from './db/migrate'
 import { initORM } from './db/sql'
@@ -238,4 +239,9 @@ initORM()
       }
     )
   )
+  .then(() => {
+    background_job.featured_court()
+  })
   .catch(err => console.error(err))
+
+background_job.featured_court()

@@ -8,6 +8,7 @@ import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
 import { fetchPark } from './fetchPark'
 import { addCourtMutation } from './mutateCourt'
+// import { addGameMutation } from './mutateGame'
 
 export function Parks() {
   return createSurvey()
@@ -20,6 +21,7 @@ function createSurvey() {
   const [GameQuery, setGameID] = React.useState('')
   const { data } = useQuery<FetchParks, FetchParksVariables>(fetchPark, {
     variables: { latitude: input_latitude, longitude: input_longitude },
+    pollInterval: 200,
   })
   interface RegistrationFormData {
     latitude: string
@@ -69,7 +71,6 @@ function createSurvey() {
     return <p></p>
   }
 
-
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -83,7 +84,7 @@ function createSurvey() {
         <input name="nickname" type="nickname" ref={register} />
         <Spacer $h4 />
         <Button>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Find Courts" />
         </Button>
       </form>
       <div className="mw6">
