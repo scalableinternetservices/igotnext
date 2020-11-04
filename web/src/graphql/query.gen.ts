@@ -24,41 +24,6 @@ export interface FetchUserContext {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: FetchCourts
-// ====================================================
-
-export interface FetchCourts_court_game {
-  __typename: "Game";
-  matchID: number;
-  status: string;
-}
-
-export interface FetchCourts_court {
-  __typename: "Court";
-  courtID: number;
-  courtName: string;
-  longitude: number;
-  latitude: number;
-  lobby: number;
-  roster: string | null;
-  game: (FetchCourts_court_game | null)[] | null;
-}
-
-export interface FetchCourts {
-  court: (FetchCourts_court | null)[] | null;
-}
-
-export interface FetchCourtsVariables {
-  latitude: number;
-  longitude: number;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: FetchCourt
 // ====================================================
 
@@ -72,10 +37,9 @@ export interface FetchCourt_courtind {
   __typename: "Court";
   courtID: number;
   courtName: string;
-  longitude: number;
-  latitude: number;
   lobby: number;
   roster: string | null;
+  featured: boolean;
   game: (FetchCourt_courtind_game | null)[] | null;
 }
 
@@ -109,6 +73,91 @@ export interface FetchGames {
 
 export interface FetchGamesVariables {
   matchId: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: FetchParks
+// ====================================================
+
+export interface FetchParks_park_courts_game {
+  __typename: "Game";
+  matchID: number;
+  status: string;
+}
+
+export interface FetchParks_park_courts {
+  __typename: "Court";
+  courtID: number;
+  courtName: string;
+  lobby: number;
+  roster: string | null;
+  featured: boolean;
+  game: (FetchParks_park_courts_game | null)[] | null;
+}
+
+export interface FetchParks_park {
+  __typename: "Park";
+  parkID: number;
+  parkName: string;
+  longitude: number;
+  latitude: number;
+  courts: (FetchParks_park_courts | null)[] | null;
+}
+
+export interface FetchParks {
+  park: (FetchParks_park | null)[] | null;
+}
+
+export interface FetchParksVariables {
+  latitude: number;
+  longitude: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: FetchPark
+// ====================================================
+
+export interface FetchPark_parkind_courts_game {
+  __typename: "Game";
+  matchID: number;
+  status: string;
+}
+
+export interface FetchPark_parkind_courts {
+  __typename: "Court";
+  courtID: number;
+  courtName: string;
+  lobby: number;
+  roster: string | null;
+  featured: boolean;
+  game: (FetchPark_parkind_courts_game | null)[] | null;
+}
+
+export interface FetchPark_parkind {
+  __typename: "Park";
+  parkID: number;
+  parkName: string;
+  longitude: number;
+  latitude: number;
+  courts: (FetchPark_parkind_courts | null)[] | null;
+}
+
+export interface FetchPark {
+  parkind: FetchPark_parkind | null;
+}
+
+export interface FetchParkVariables {
+  park_id: number;
 }
 
 /* tslint:disable */
@@ -334,10 +383,9 @@ export interface Court {
   __typename: "Court";
   courtID: number;
   courtName: string;
-  longitude: number;
-  latitude: number;
   lobby: number;
   roster: string | null;
+  featured: boolean;
   game: (Court_game | null)[] | null;
 }
 
@@ -355,6 +403,40 @@ export interface Game {
   matchID: number;
   status: string;
   roster: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Park
+// ====================================================
+
+export interface Park_courts_game {
+  __typename: "Game";
+  matchID: number;
+  status: string;
+}
+
+export interface Park_courts {
+  __typename: "Court";
+  courtID: number;
+  courtName: string;
+  lobby: number;
+  roster: string | null;
+  featured: boolean;
+  game: (Park_courts_game | null)[] | null;
+}
+
+export interface Park {
+  __typename: "Park";
+  parkID: number;
+  parkName: string;
+  longitude: number;
+  latitude: number;
+  courts: (Park_courts | null)[] | null;
 }
 
 /* tslint:disable */

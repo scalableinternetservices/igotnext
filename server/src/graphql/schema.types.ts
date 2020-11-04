@@ -17,9 +17,9 @@ export interface Query {
   self?: Maybe<User>
   surveys: Array<Survey>
   survey?: Maybe<Survey>
-  park?: Maybe<Park>
   game?: Maybe<Game>
-  court?: Maybe<Array<Maybe<Court>>>
+  parkind?: Maybe<Park>
+  park?: Maybe<Array<Maybe<Park>>>
   courtind?: Maybe<Court>
 }
 
@@ -27,15 +27,15 @@ export interface QuerySurveyArgs {
   surveyId: Scalars['Int']
 }
 
-export interface QueryParkArgs {
-  park_id: Scalars['Int']
-}
-
 export interface QueryGameArgs {
   match_id: Scalars['Int']
 }
 
-export interface QueryCourtArgs {
+export interface QueryParkindArgs {
+  park_id: Scalars['Int']
+}
+
+export interface QueryParkArgs {
   latitude: Scalars['Int']
   longitude: Scalars['Int']
 }
@@ -126,6 +126,8 @@ export interface SurveyInput {
 export interface Park {
   __typename?: 'Park'
   parkID: Scalars['Int']
+  longitude: Scalars['Int']
+  latitude: Scalars['Int']
   parkName: Scalars['String']
   courts?: Maybe<Array<Maybe<Court>>>
 }
@@ -134,11 +136,10 @@ export interface Court {
   __typename?: 'Court'
   courtID: Scalars['Int']
   courtName: Scalars['String']
-  longitude: Scalars['Int']
-  latitude: Scalars['Int']
   lobby: Scalars['Int']
   game?: Maybe<Array<Maybe<Game>>>
-  park: Park
+  park?: Maybe<Park>
+  featured: Scalars['Boolean']
   roster?: Maybe<Scalars['String']>
 }
 
@@ -288,13 +289,13 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QuerySurveyArgs, 'surveyId'>
   >
-  park?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType, RequireFields<QueryParkArgs, 'park_id'>>
   game?: Resolver<Maybe<ResolversTypes['Game']>, ParentType, ContextType, RequireFields<QueryGameArgs, 'match_id'>>
-  court?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['Court']>>>,
+  parkind?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType, RequireFields<QueryParkindArgs, 'park_id'>>
+  park?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['Park']>>>,
     ParentType,
     ContextType,
-    RequireFields<QueryCourtArgs, 'latitude' | 'longitude'>
+    RequireFields<QueryParkArgs, 'latitude' | 'longitude'>
   >
   courtind?: Resolver<
     Maybe<ResolversTypes['Court']>,
@@ -399,10 +400,11 @@ export type ParkResolvers<
   ParentType extends ResolversParentTypes['Park'] = ResolversParentTypes['Park']
 > = {
   parkID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  longitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   parkName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   courts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Court']>>>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-
 }
 
 export type CourtResolvers<
@@ -411,13 +413,10 @@ export type CourtResolvers<
 > = {
   courtID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   courtName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  longitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  latitude?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   lobby?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   game?: Resolver<Maybe<Array<Maybe<ResolversTypes['Game']>>>, ParentType, ContextType>
-
-  park?: Resolver<ResolversTypes['Park'], ParentType, ContextType>
-
+  park?: Resolver<Maybe<ResolversTypes['Park']>, ParentType, ContextType>
+  featured?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   roster?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
@@ -429,7 +428,6 @@ export type GameResolvers<
   matchID?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   court?: Resolver<ResolversTypes['Court'], ParentType, ContextType>
-
   roster?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }

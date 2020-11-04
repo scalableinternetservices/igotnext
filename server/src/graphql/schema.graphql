@@ -22,13 +22,11 @@ type Query {
 
   survey (surveyId: Int!): Survey
 
-
-  park (park_id: Int!): Park
-
   game (match_id: Int!): Game
 
-  # search for available courts listed on map
-  court(latitude: Int!, longitude: Int!): [Court]
+  parkind (park_id: Int!): Park
+
+  park(latitude: Int!, longitude: Int!): [Park]
 
   courtind(court_ID: Int!): Court
 }
@@ -112,6 +110,10 @@ input SurveyInput {
 type Park {
   parkID: Int!
 
+  longitude: Int!
+
+  latitude: Int!
+
   parkName: String!
 
   courts: [Court]
@@ -122,10 +124,6 @@ type Court{
 
   courtName: String!
 
-  longitude: Int!
-
-  latitude: Int!
-
   lobby: Int!
 
 # each Court should correspond to multiple match
@@ -133,6 +131,8 @@ type Court{
   game: [Game]
 
   park: Park
+
+  featured: Boolean!
 
   roster: String
 

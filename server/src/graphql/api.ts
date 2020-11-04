@@ -51,12 +51,12 @@ export const graphqlRoot: Resolvers<Context> = {
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
     game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
-    park: async (_, {park_id}) => (await Park.findOne({where: {parkID: park_id} })) || null,
-    court: async (_, { longitude, latitude }) => {
-      const courts = await Court.find()
-      const result: Array<Court> = []
+    parkind: async (_, {park_id}) => (await Park.findOne({where: {parkID: park_id} })) || null,
+    park: async (_, { longitude, latitude }) => {
+      const parks = await Park.find()
+      const result: Array<Park> = []
 
-      courts.forEach(element => {
+      parks.forEach(element => {
         if (calcKM(element.latitude, element.longitude, latitude, longitude) < 10) {
           // we can change distance we want later if need be
           // simple less than 10 km

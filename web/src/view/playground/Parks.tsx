@@ -3,14 +3,13 @@ import { Link } from '@reach/router'
 import * as React from 'react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { FetchCourts, FetchCourtsVariables } from '../../graphql/query.gen'
+import { FetchParks, FetchParksVariables } from '../../graphql/query.gen'
 import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
-import { fetchCourt } from './fetchCourt'
+import { fetchPark } from './fetchPark'
 import { addCourtMutation } from './mutateCourt'
-import { addGameMutation } from './mutateGame'
 
-export function Courts() {
+export function Parks() {
   return createSurvey()
 }
 
@@ -19,7 +18,7 @@ function createSurvey() {
   const [input_latitude, setlatitude] = React.useState(0)
   const [nickname, setnickname] = React.useState('')
   const [GameQuery, setGameID] = React.useState('')
-  const { data } = useQuery<FetchCourts, FetchCourtsVariables>(fetchCourt, {
+  const { data } = useQuery<FetchParks, FetchParksVariables>(fetchPark, {
     variables: { latitude: input_latitude, longitude: input_longitude },
   })
   interface RegistrationFormData {
@@ -41,16 +40,35 @@ function createSurvey() {
       onSubmit: handleSubmit(onSubmit),
     }
   }
-  function joinGame(courtID: number | undefined, lobby: number | undefined, nickname: string) {
+  async function joinGame(courtID: number | undefined, nickname: string) {
     if (courtID !== undefined) {
-      void addCourtMutation(courtID, nickname)
-      setGameID('/app/in_game/?gameID=' + courtID.toString() + '.' + input_latitude + '.' + input_longitude)
-      console.log(lobby)
-      if (lobby === 9) {
-        void addGameMutation(courtID)
-      }
+      await addCourtMutation(courtID, nickname)
+      // if (lobby === 9) {
+      //   void addGameMutation(courtID)
+      // }
     }
   }
+
+  function changeResultPage(courtID: number | undefined) {
+    // should change link to reflect correct game match
+    if (courtID !== undefined) {
+      setGameID('/app/in_game/?gameID=' + courtID.toString() + '.' + input_latitude + '.' + input_longitude)
+    }
+  }
+
+  // Display text under the current featured court
+  interface DisplayCourtProps {
+    featured: boolean | undefined
+  }
+  function DisplayCourt(props: DisplayCourtProps): React.ReactElement | null {
+    const featured = props.featured
+
+    if (featured) {
+      return <p>[FEATURED COURT]</p>
+    }
+    return <p></p>
+  }
+
 
   return (
     <div>
@@ -69,13 +87,22 @@ function createSurvey() {
         </Button>
       </form>
       <div className="mw6">
-        {data?.court?.map((s, i) => (
+        {data?.park?.map((s, i) => (
           <div key={i} className="pa3 br2 mb2 bg-black-10 flex items-center">
-            <Link to={GameQuery}>
-              <p onClick={() => joinGame(s?.courtID, s?.lobby, nickname)}>
-                courts : {s?.courtName} : {s?.lobby} / 10
-              </p>
-            </Link>
+            {s?.courts?.map((t, j) => (
+              <div key={j} className="pa3 br2 mb2 bg-black-10 flex items-center">
+                <Link to={GameQuery}>
+                  <p
+                    onMouseEnter={() => changeResultPage(t?.courtID)}
+                    onMouseLeave={() => setGameID('')}
+                    onClick={() => joinGame(t?.courtID, nickname)}
+                  >
+                    {t?.courtName} ({t?.lobby} / 10)
+                    <DisplayCourt featured={t?.featured} />
+                  </p>
+                </Link>
+              </div>
+            ))}
           </div>
         ))}
       </div>

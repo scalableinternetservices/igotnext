@@ -11,6 +11,12 @@ export class Park extends BaseEntity {
   @Column() // to identify (for frontend)
   parkName: string
 
+  @Column()
+  longitude: number
+
+  @Column()
+  latitude: number
+
   @OneToMany(() => Court, court => court.park, { nullable: false, eager: true })
   @JoinColumn()
   courts: Court[]
