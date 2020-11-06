@@ -72,16 +72,37 @@ function createSurvey() {
   }
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <p>latitude</p>
-        <input name="latitude" type="latitude" ref={register} />
+    <div className="w-full max-w-x">
+      <form onSubmit={onSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="latitude">
+          latitude
+        </label>
+        <input
+          name="latitude"
+          type="latitude"
+          ref={register}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
         <Spacer $h4 />
-        <p>longitude</p>
-        <input name="longitude" type="longitude" ref={register} />
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="longitude">
+          longitude
+        </label>
+        <input
+          name="longitude"
+          type="longitude"
+          ref={register}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
         <Spacer $h4 />
-        <p>nickname</p>
-        <input name="nickname" type="nickname" ref={register} />
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nickname">
+          nickname
+        </label>
+        <input
+          name="nickname"
+          type="nickname"
+          ref={register}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
         <Spacer $h4 />
         <Button>
           <input type="submit" value="Find Courts" />

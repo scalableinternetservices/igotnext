@@ -55,6 +55,7 @@ export function renderApp(req: Request, res: Response) {
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="shortcut icon" href={`/app/assets/favicon${Config.isProd ? '' : '-dev'}.ico`} />
+            <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"></link>
             <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
             <link rel="stylesheet" href="/app/css/app.css" />
             <script
