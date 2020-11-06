@@ -110,7 +110,7 @@ function createSurvey() {
       </form>
       <div className="mw6">
         {data?.park?.map((s, i) => (
-          <div key={i} className="pa3 br2 mb2 bg-black-10 flex items-center">
+          <div key={i}>
             {s?.courts?.map((t, j) => (
               <div key={j} className="pa3 br2 mb2 bg-black-10 flex items-center">
                 <Link to={GameQuery}>
