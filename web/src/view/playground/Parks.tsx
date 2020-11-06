@@ -111,6 +111,8 @@ function createSurvey() {
       <div className="mw6">
         {data?.park?.map((s, i) => (
           <div key={i}>
+            <p>{s?.parkName}</p>
+            <Spacer $h4 />
             {s?.courts?.map((t, j) => (
               <div key={j} className="pa3 br2 mb2 bg-black-10 flex items-center">
                 <Link to={GameQuery}>
@@ -125,6 +127,7 @@ function createSurvey() {
                 </Link>
               </div>
             ))}
+            <Spacer $h4 />
           </div>
         ))}
       </div>
