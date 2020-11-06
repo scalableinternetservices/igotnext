@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import http from 'k6/http';
 import { sleep } from 'k6';
 
