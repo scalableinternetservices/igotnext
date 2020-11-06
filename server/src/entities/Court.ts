@@ -13,12 +13,6 @@ export class Court extends BaseEntity {
   @Column()
   courtName: string
 
-  @Column()
-  longitude: number
-
-  @Column()
-  latitude: number
-
   // Number of players currently on the court, maximum of 10
   @Column()
   lobby: number

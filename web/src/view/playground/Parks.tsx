@@ -3,14 +3,14 @@ import { Link } from '@reach/router'
 import * as React from 'react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { FetchCourts, FetchCourtsVariables } from '../../graphql/query.gen'
+import { FetchParks, FetchParksVariables } from '../../graphql/query.gen'
 import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
-import { fetchCourt } from './fetchCourt'
+import { fetchPark } from './fetchPark'
 import { addCourtMutation } from './mutateCourt'
 // import { addGameMutation } from './mutateGame'
 
-export function Courts() {
+export function Parks() {
   return createSurvey()
 }
 
@@ -19,7 +19,7 @@ function createSurvey() {
   const [input_latitude, setlatitude] = React.useState(0)
   const [nickname, setnickname] = React.useState('')
   const [GameQuery, setGameID] = React.useState('')
-  const { data } = useQuery<FetchCourts, FetchCourtsVariables>(fetchCourt, {
+  const { data } = useQuery<FetchParks, FetchParksVariables>(fetchPark, {
     variables: { latitude: input_latitude, longitude: input_longitude },
     pollInterval: 200,
   })
@@ -109,18 +109,25 @@ function createSurvey() {
         </Button>
       </form>
       <div className="mw6">
-        {data?.court?.map((s, i) => (
-          <div key={i} className="pa3 br2 mb2 bg-black-10 flex items-center">
-            <Link to={GameQuery}>
-              <p
-                onMouseEnter={() => changeResultPage(s?.courtID)}
-                onMouseLeave={() => setGameID('')}
-                onClick={() => joinGame(s?.courtID, nickname)}
-              >
-                {s?.courtName} ({s?.lobby} / 10)
-                <DisplayCourt featured={s?.featured} />
-              </p>
-            </Link>
+        {data?.park?.map((s, i) => (
+          <div key={i}>
+            <p>{s?.parkName}</p>
+            <Spacer $h4 />
+            {s?.courts?.map((t, j) => (
+              <div key={j} className="pa3 br2 mb2 bg-black-10 flex items-center">
+                <Link to={GameQuery}>
+                  <p
+                    onMouseEnter={() => changeResultPage(t?.courtID)}
+                    onMouseLeave={() => setGameID('')}
+                    onClick={() => joinGame(t?.courtID, nickname)}
+                  >
+                    {t?.courtName} ({t?.lobby} / 10)
+                    <DisplayCourt featured={t?.featured} />
+                  </p>
+                </Link>
+              </div>
+            ))}
+            <Spacer $h4 />
           </div>
         ))}
       </div>
