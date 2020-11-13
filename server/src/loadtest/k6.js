@@ -1,22 +1,31 @@
 /* eslint-disable prettier/prettier */
 import http from 'k6/http';
+import { sleep } from 'k6';
+import {parseHTML} from "k6/html";
 
 // export let options = {
-//   vus: 4,
-//   duration: '2s',
+//   vus: 10,
+//   duration: '30s',
 // };
 
 export default function () {
-  // recordRates(
-  const resp = http.post(//AddToCourt($court_id: Int!, $nickname: String) {addUserToCourt(courtID: $court_id, nickname: $nickname)}
-    'http://localhost:3000/graphql',
-    '{"operationName":"AddToCourt","variables":{"court_id":1,"nickname":"tian"},"query":"  mutation AddToCourt($court_id: Int!, $nickname: String) {addUserToCourt(courtID: $court_id, nickname: $nickname)}"}',
-    {
-      headers: {
-        'Content-Type': 'application/json',//$court_id: Int!, $nickname: String
-      },
-    }
-  )
+  let res = http.get('http://localhost:3000/app/index');
+  // Now, submit form setting/overriding some fields of the form
+  res = res.submitForm({
+    formSelector: 'form',
+    fields: { latitude: 33, longitude: -117 , nickname: 'sean' },
+  });
+  sleep(2);
+
+  console.log(res.body)
+  const doc = parseHTML(res.body);
+  const sel = doc.find('div').children();
+
+  doc.find("div").children().toArray().forEach(function (item) {
+      // console.log(item.get(0).innerHTML());
+      // make http gets for it
+      // or added them to an array and make one batch request
+   });
 }
 
 // to run just use k6 run {this file name}
