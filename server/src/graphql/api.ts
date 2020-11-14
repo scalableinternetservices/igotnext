@@ -51,7 +51,7 @@ export const graphqlRoot: Resolvers<Context> = {
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
     game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
-    parkind: async (_, {park_id}) => (await Park.findOne({where: {parkID: park_id} })) || null,
+    parkind: async (_, { park_id }) => (await Park.findOne({ where: { parkID: park_id } })) || null,
     park: async (_, { longitude, latitude }) => {
       const parks = await Park.find()
       const result: Array<Park> = []
@@ -112,7 +112,27 @@ export const graphqlRoot: Resolvers<Context> = {
       return true
     },
     addUserToCourt: async (_, { courtID, nickname }) => {
-      const court_lobby = check(await Court.findOne({ where: { courtID: courtID } }))
+      //original
+      //const court_lobby = check(await Court.findOne({ where: { courtID: courtID } }))
+
+      // performance start //
+      const court_lobby_list = check(await Court.find())
+      let court_lobby = check(await Court.findOne({ where: { courtID: courtID } })) //find correct court lobby among all courts
+      court_lobby_list.forEach(element => {
+        if (element.courtID === courtID) {
+          console.log('added')
+          court_lobby = element
+          if (!element.featured) {
+          }
+        }
+      })
+      court_lobby_list.forEach(element => {
+        if (element.roster === 'kevintiankevin') {
+          console.log('added')
+          element.roster = 'tiantiantian'
+        }
+      })
+      // performance end //
       if (court_lobby === null) {
         return false
       }
