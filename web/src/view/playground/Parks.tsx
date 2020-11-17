@@ -8,7 +8,6 @@ import { Button } from '../../style/button'
 import { Spacer } from '../../style/spacer'
 import { fetchPark } from './fetchPark'
 import { addCourtMutation } from './mutateCourt'
-// import { addGameMutation } from './mutateGame'
 
 export function Parks() {
   return createSurvey()
@@ -29,6 +28,7 @@ function createSurvey() {
     nickname: string
   }
   const { register, onSubmit } = useRegistrationForm()
+
   function useRegistrationForm() {
     const { register, handleSubmit } = useForm<RegistrationFormData>()
     const onSubmit = useCallback((formValues: RegistrationFormData) => {
@@ -42,12 +42,10 @@ function createSurvey() {
       onSubmit: handleSubmit(onSubmit),
     }
   }
+
   async function joinGame(courtID: number | undefined, nickname: string) {
     if (courtID !== undefined) {
       await addCourtMutation(courtID, nickname)
-      // if (lobby === 9) {
-      //   void addGameMutation(courtID)
-      // }
     }
   }
 
@@ -63,9 +61,7 @@ function createSurvey() {
     featured: boolean | undefined
   }
   function DisplayCourt(props: DisplayCourtProps): React.ReactElement | null {
-    const featured = props.featured
-
-    if (featured) {
+    if (props.featured) {
       return <p>[FEATURED COURT]</p>
     }
     return <p></p>

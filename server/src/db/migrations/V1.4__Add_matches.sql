@@ -1,2 +1,0 @@
--- insert into `game` ( `status`, `courtCourtID` ) values ('IN_PROGRESS', 1);
--- insert into `game` ( `status` ) values ('FINISHED');

@@ -1,9 +1,9 @@
 require('honeycomb-beeline')({
   writeKey: process.env.HONEYCOMB_KEY || 'f7c2e83295554274c64e930bdb44b853',
-  dataset: process.env.APP_NAME || 'igotnext',
+  dataset: process.env.APP_NAME || 'igotnext-local',
   serviceName: process.env.APPSERVER_TAG || 'local',
   enabledInstrumentations: ['express', 'mysql2', 'react-dom/server'],
-  sampleRate: 10,
+  sampleRate: 100,
 })
 
 import assert from 'assert'
@@ -31,7 +31,11 @@ import { renderApp } from './render'
 const server = new GraphQLServer({
   typeDefs: getSchema(),
   resolvers: graphqlRoot as any,
-  context: ctx => ({ ...ctx, pubsub, user: (ctx.request as any)?.user || null }),
+  context: ctx => ({
+    ...ctx,
+    pubsub,
+    user: (ctx.request as any)?.user || null,
+  }),
 })
 
 server.express.use(cookieParser())
@@ -49,7 +53,7 @@ server.express.get('/', (req, res) => {
 
 server.express.get('/app/*', (req, res) => {
   console.log('GET /app')
-  renderApp(req, res)
+  renderApp(req, res, server.executableSchema)
 })
 
 server.express.post(

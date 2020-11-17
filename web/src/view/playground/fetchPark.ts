@@ -11,24 +11,24 @@ export const fragmentPark = gql`
       ...Court
     }
   }
-  `
+`
 
 export const fetchPark = gql`
-query FetchParks($latitude: Int!, $longitude: Int!) {
-  park(latitude: $latitude, longitude: $longitude) {
-    ...Park
+  query FetchParks($latitude: Int!, $longitude: Int!) {
+    park(latitude: $latitude, longitude: $longitude) {
+      ...Park
+    }
   }
-}
-${fragmentPark}
-${fragmentCourt}
+  ${fragmentPark}
+  ${fragmentCourt}
 `
 
 export const fetchParkID = gql`
-query FetchPark($park_id: Int!) {
-  parkind(park_id: $park_id) {
-    ...Park
+  query FetchPark($park_id: Int!) {
+    parkind(park_id: $park_id) {
+      ...Park
+    }
   }
-}
-${fragmentPark}
-${fragmentCourt}
+  ${fragmentPark}
+  ${fragmentCourt}
 `
