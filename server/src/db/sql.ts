@@ -25,7 +25,11 @@ export async function initORM() {
     logging: false,
     entities: [User, Session, Survey, SurveyQuestion, SurveyAnswer, Game, Court, Park],
     extra: {
+<<<<<<< HEAD
       connectionLimit: 24,
+=======
+      connectionLimit: 1,
+>>>>>>> 5954bccd444cdce14d19227cf3f14867d07ce541
     },
   })
 }
