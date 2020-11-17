@@ -7,8 +7,6 @@ export class Court extends BaseEntity {
   @PrimaryGeneratedColumn()
   courtID: number
 
-  // @ManyToOne(() => Aggregate, agg => agg.listOfCourts)
-  // agg: Aggregate
   // Display name of court
   @Column()
   courtName: string

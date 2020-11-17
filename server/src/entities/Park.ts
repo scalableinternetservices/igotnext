@@ -6,8 +6,6 @@ export class Park extends BaseEntity {
   @PrimaryGeneratedColumn()
   parkID: number
 
-  // @ManyToOne(() => Aggregate, agg => agg.listOfCourts)
-  // agg: Aggregate
   @Column() // to identify (for frontend)
   parkName: string
 
