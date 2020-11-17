@@ -1,7 +1,6 @@
 import { ApolloClient, gql } from '@apollo/client'
 import { getApolloClient } from '../../graphql/apolloClient'
 import { FetchCourtVariables } from '../../graphql/query.gen'
-// import { fetchCourt, fragmentCourt } from './fetchCourt'
 
 const courtMutation = gql`
   mutation AddToCourt($court_id: Int!, $nickname: String) {

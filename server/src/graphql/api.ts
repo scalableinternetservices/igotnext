@@ -51,7 +51,7 @@ export const graphqlRoot: Resolvers<Context> = {
     survey: async (_, { surveyId }) => (await Survey.findOne({ where: { id: surveyId } })) || null,
     surveys: () => Survey.find(),
     game: async (_, { match_id }) => (await Game.findOne({ where: { matchID: match_id } })) || null,
-    parkind: async (_, {park_id}) => (await Park.findOne({where: {parkID: park_id} })) || null,
+    parkind: async (_, { park_id }) => (await Park.findOne({ where: { parkID: park_id } })) || null,
     park: async (_, { longitude, latitude }) => {
       const parks = await Park.find()
       const result: Array<Park> = []
@@ -67,7 +67,7 @@ export const graphqlRoot: Resolvers<Context> = {
       return result
     },
     courtind: async (_, { court_ID }) => (await Court.findOne({ where: { courtID: court_ID } })) || null,
-    allGames: () => Game.find(),
+    allGames: () => Game.find({ order: { matchID: 'ASC' }, take: 25 }),
   },
   Mutation: {
     answerSurvey: async (_, { input }, ctx) => {
@@ -139,11 +139,5 @@ export const graphqlRoot: Resolvers<Context> = {
         return false
       }
     },
-    // Subscription: {
-    //   // surveyUpdates: {
-    //   //   subscribe: (_, { surveyId }, context) => context.pubsub.asyncIterator('SURVEY_UPDATE_' + surveyId),
-    //   //   resolve: (payload: any) => payload,
-    //   // },
-    // },
   },
 }

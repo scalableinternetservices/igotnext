@@ -6,9 +6,6 @@ export class Game extends BaseEntity {
   @PrimaryGeneratedColumn()
   matchID: number
 
-  // @ManyToOne(() => Aggregate, agg => agg.listOfMatches)
-  // agg: Aggregate
-
   @CreateDateColumn()
   dateOfMatch: Date
 
