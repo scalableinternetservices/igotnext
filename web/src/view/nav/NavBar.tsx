@@ -31,14 +31,6 @@ const otherTabs = [
   */
   //TODO: add routing
   {
-    name: 'login',
-    path: getPath(Route.LOGIN),
-  },
-  {
-    name: 'signup',
-    path: getPath(Route.SIGNUP),
-  },
-  {
     name: 'Match History',
     path: getPath(Route.LOBBY),
   },
