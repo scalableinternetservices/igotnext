@@ -1,18 +1,19 @@
-import { useQuery } from '@apollo/client'
-import { Link } from '@reach/router'
+// import { useQuery } from '@apollo/client'
+// import { Link } from '@reach/router'
 import * as React from 'react'
-import { useCallback } from 'react'
-import { useForm } from 'react-hook-form'
-import { FetchParks, FetchParksVariables } from '../../graphql/query.gen'
-import { Button } from '../../style/button'
-import { Spacer } from '../../style/spacer'
-import { fetchPark } from './fetchPark'
-import { addCourtMutation } from './mutateCourt'
+// import { useCallback } from 'react'
+// import { useForm } from 'react-hook-form'
+// import { FetchParks, FetchParksVariables } from '../../graphql/query.gen'
+// import { Button } from '../../style/button'
+// import { Spacer } from '../../style/spacer'
+// import { fetchPark } from './fetchPark'
+// import { addCourtMutation } from './mutateCourt'
 
 export function Parks() {
-  return createSurvey()
+  return <p>Test</p>
+  //return createSurvey()
 }
-
+/*
 function createSurvey() {
   const [input_longitude, setlongitude] = React.useState(0)
   const [input_latitude, setlatitude] = React.useState(0)
@@ -130,3 +131,4 @@ function createSurvey() {
     </div>
   )
 }
+*/
