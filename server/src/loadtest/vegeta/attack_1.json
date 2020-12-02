@@ -1,0 +1,9 @@
+{
+  "operationName": "AddToCourt",
+  "variables":
+  {
+    "court_id": 1,
+    "nickname": "NewPlayer"
+  },
+  "query": "mutation AddToCourt($court_id: Int!, $nickname: String) {addUserToCourt(courtID: $court_id, nickname: $nickname)}"
+}
