@@ -1,0 +1,3 @@
+{
+  "query":  "courtKind{ courtind(court_ID:1) { courtID courtName lobby }}"
+}

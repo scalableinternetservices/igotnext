@@ -8,29 +8,46 @@ Group Members: Ryan Yang, Sean Yin, Aaron Phillip, Cheng Peng
 
 ---
 
+## Running Our Application
+
+To run our application, you can follow the steps outlined in the [Quickstart](##Quickstart) section copied from the original CS188 project. Once the project has been downloaded and the dependencies have been installed, follow the code below to get the application running.
+
+```bash
+sudo docker-compose up -d
+npm run watch
+```
+
+Then within VSCode, navigate to the 'Run' tab on the left hand selection and click the green button to get the server up and running. More detailed information can be found below at [running server.ts](###Run-`server.ts`), and the application can be found at [localhost:3000](http://localhost:3000/app/index) along with the graphQL playground at [localhost:3000/graphql](http://localhost:3000/graphql).
+
+---
+
 ## Run Our Load Testing
 
 ### K6
 
-To run our K6 loadtests, follow the [K6 installation Guide](https://k6.io/docs/getting-started/installation) if it has not been installed already. Then, enter our main project director and run the load test as specified in the code block below. Changes can be made in [k6.js](server/src/loadtest/k6.js) and more information on K6 can be found [here](https://k6.io/docs/).
+To run our K6 loadtests, follow the [K6 installation Guide](https://k6.io/docs/getting-started/installation) if it has not been installed already. Follow the instructions above to start our server and [run the application](##Running-our-Application). Then, enter our main project director and run the load test as specified in the code block below. Changes can be made in [k6.js](server/src/loadtest/k6.js) and more information on K6 can be found [here](https://k6.io/docs/).
 
 ```bash
 cd igotnext
 k6 run ./server/src/loadtest/k6.js
 ```
 
+Output will be displayed on the Terminal.
+
 ### Vegeta
 
-Running our Vegeta tests follows a similar process. First, install the Vegeta load testing package as described [here](https://www.scaleway.com/en/docs/vegeta-load-testing/) if you are on ubuntu, or [here](https://github.com/tsenart/vegeta) if you are on OS X. Then, follow the code snippet below to run the preconfigured loadtests or change the load test itself in [vegeta_run.sh](server/src/loadtest/vegeta/vegeta_run.sh). If permissions are not enabled for the script, enable them. More information on vegeta can be found on its [official github](https://github.com/tsenart/vegeta).
+Running our Vegeta tests follows a similar process. First, install the Vegeta load testing package as described [here](https://www.scaleway.com/en/docs/vegeta-load-testing/) if you are on ubuntu, or [here](https://github.com/tsenart/vegeta) if you are on OS X. Next, get the application up and running by following the [setup guide](##Running-Our-Application). Then, follow the code snippet below to run the preconfigured loadtests or change the load test itself in [vegeta_run.sh](server/src/loadtest/vegeta/vegeta_run.sh). If permissions are not enabled for the script, enable them. More information on vegeta can be found on its [official github](https://github.com/tsenart/vegeta).
 
 ```bash
 cd igotnext
 ./server/src/loadtest/vegeta/vegeta_run.sh
 ```
 
+Output will be in [vegeta_report.txt](server/src/loadtest/vegeta/vegeta_report.txt). Additional graphs can be found in the [vegeta directory](server/src/loadtest/vegeta) if you open the graph files on your browser.
+
 ---
 
-Welcome to Cloud City!
+## Welcome to Cloud City
 
 ## Dependencies
 

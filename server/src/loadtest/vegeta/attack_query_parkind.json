@@ -1,0 +1,3 @@
+{
+  "query": "Parkind{ parkind(park_id:1) { parkName }}"
+}

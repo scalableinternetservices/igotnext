@@ -1,36 +1,88 @@
-Small Vegeta Attack
-Requests      [total, rate]            100, 20.20
-Duration      [total, attack, wait]    4.971183025s, 4.949798376s, 21.384649ms
-Latencies     [mean, 50, 95, 99, max]  27.517997ms, 26.588236ms, 44.897072ms, 48.809549ms, 50.676628ms
-Bytes In      [total, mean]            3200, 32.00
-Bytes Out     [total, mean]            23400, 234.00
+Vegeta Attack Mutation Courts
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    15.084985078s, 14.989910167s, 95.074911ms
+Latencies     [mean, 50, 95, 99, max]  115.667424ms, 39.411614ms, 418.963839ms, 468.006042ms, 606.437087ms
+Bytes In      [total, mean]            48000, 32.00
+Bytes Out     [total, mean]            351000, 234.00
 Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:100  
+Status Codes  [code:count]             200:1500  
 Error Set:
 
 
 
-Vegeta Attack
-Requests      [total, rate]            1600, 80.05
-Duration      [total, attack, wait]    20.000625038s, 19.987493455s, 13.131583ms
-Latencies     [mean, 50, 95, 99, max]  29.198233ms, 20.003644ms, 74.408256ms, 166.916269ms, 261.079685ms
-Bytes In      [total, mean]            51136, 31.96
-Bytes Out     [total, mean]            373932, 233.71
-Success       [ratio]                  99.88%
-Status Codes  [code:count]             0:2  200:1598  
+Vegeta Attack Mutation Games
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    15.002769845s, 14.990050855s, 12.71899ms
+Latencies     [mean, 50, 95, 99, max]  45.365303ms, 19.957473ms, 182.648868ms, 299.931915ms, 363.929655ms
+Bytes In      [total, mean]            37500, 25.00
+Bytes Out     [total, mean]            222000, 148.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:1500  
 Error Set:
-Post http://localhost:3000/graphql/: read tcp 127.0.0.1:39677->127.0.0.1:3000: read: connection reset by peer
-Post http://localhost:3000/graphql/: read tcp 127.0.0.1:39745->127.0.0.1:3000: read: connection reset by peer
 
 
 
-Big Vegeta Attack
-Requests      [total, rate]            4500, 150.03
-Duration      [total, attack, wait]    33.018119304s, 29.993443204s, 3.0246761s
-Latencies     [mean, 50, 95, 99, max]  4.424660848s, 3.8788904s, 9.065118532s, 10.311130568s, 10.924217333s
-Bytes In      [total, mean]            135040, 30.01
-Bytes Out     [total, mean]            987480, 219.44
-Success       [ratio]                  93.78%
-Status Codes  [code:count]             0:280  200:4220  
+Vegeta Attack Query CourtKind
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    14.994898257s, 14.990021891s, 4.876366ms
+Latencies     [mean, 50, 95, 99, max]  4.515702ms, 4.904267ms, 7.03093ms, 13.214046ms, 68.837258ms
+Bytes In      [total, mean]            159000, 106.00
+Bytes Out     [total, mean]            117000, 78.00
+Success       [ratio]                  0.00%
+Status Codes  [code:count]             400:1500  
 Error Set:
-Post http://localhost:3000/graphql/: dial tcp 0.0.0.0:0->127.0.0.1:3000: socket: too many open files
+400 Bad Request
+
+
+
+Vegeta Attack Query Games
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    14.991888827s, 14.989902048s, 1.986779ms
+Latencies     [mean, 50, 95, 99, max]  5.65518ms, 4.878032ms, 7.668852ms, 49.707015ms, 167.376238ms
+Bytes In      [total, mean]            153000, 102.00
+Bytes Out     [total, mean]            114000, 76.00
+Success       [ratio]                  0.00%
+Status Codes  [code:count]             400:1500  
+Error Set:
+400 Bad Request
+
+
+
+Vegeta Attack Query ParkInd
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    14.993290793s, 14.990001461s, 3.289332ms
+Latencies     [mean, 50, 95, 99, max]  4.668506ms, 4.890029ms, 7.193811ms, 14.480223ms, 72.780365ms
+Bytes In      [total, mean]            156000, 104.00
+Bytes Out     [total, mean]            87000, 58.00
+Success       [ratio]                  0.00%
+Status Codes  [code:count]             400:1500  
+Error Set:
+400 Bad Request
+
+
+
+Vegeta Attack Query ParkQ
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    14.995425506s, 14.990135257s, 5.290249ms
+Latencies     [mean, 50, 95, 99, max]  4.53347ms, 4.925141ms, 7.234872ms, 12.931698ms, 26.482453ms
+Bytes In      [total, mean]            153000, 102.00
+Bytes Out     [total, mean]            174000, 116.00
+Success       [ratio]                  0.00%
+Status Codes  [code:count]             400:1500  
+Error Set:
+400 Bad Request
+
+
+
+Vegeta Attack Endpoints
+Requests      [total, rate]            1500, 100.07
+Duration      [total, attack, wait]    14.993279952s, 14.98993229s, 3.347662ms
+Latencies     [mean, 50, 95, 99, max]  5.414466ms, 3.927258ms, 11.825902ms, 38.247394ms, 98.232973ms
+Bytes In      [total, mean]            1218000, 812.00
+Bytes Out     [total, mean]            0, 0.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:1500  
+Error Set:
+
+
+
