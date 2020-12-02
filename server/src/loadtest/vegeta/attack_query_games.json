@@ -1,3 +1,0 @@
-{
-  "query":  "Games{ allGames{ matchID status court{ courtID } roster }}"
-}

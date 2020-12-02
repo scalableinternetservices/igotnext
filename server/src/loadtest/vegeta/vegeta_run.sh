@@ -4,8 +4,8 @@ cd server/src/loadtest/vegeta/
 rm vegeta_report.txt
 touch vegeta_report.txt
 
-duration=3s
-rate=100
+duration=12s
+rate=120
 
 # Attack Court Mutation
 echo "Vegeta Attack Mutation Courts" >> vegeta_report.txt

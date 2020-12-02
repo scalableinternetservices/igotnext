@@ -1,87 +1,83 @@
 Vegeta Attack Mutation Courts
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    15.084985078s, 14.989910167s, 95.074911ms
-Latencies     [mean, 50, 95, 99, max]  115.667424ms, 39.411614ms, 418.963839ms, 468.006042ms, 606.437087ms
-Bytes In      [total, mean]            48000, 32.00
-Bytes Out     [total, mean]            351000, 234.00
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    12.773320407s, 11.991668176s, 781.652231ms
+Latencies     [mean, 50, 95, 99, max]  1.039070099s, 1.08900609s, 1.515301097s, 1.659450511s, 1.878755196s
+Bytes In      [total, mean]            46080, 32.00
+Bytes Out     [total, mean]            336960, 234.00
 Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:1500  
+Status Codes  [code:count]             200:1440  
 Error Set:
 
 
 
 Vegeta Attack Mutation Games
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    15.002769845s, 14.990050855s, 12.71899ms
-Latencies     [mean, 50, 95, 99, max]  45.365303ms, 19.957473ms, 182.648868ms, 299.931915ms, 363.929655ms
-Bytes In      [total, mean]            37500, 25.00
-Bytes Out     [total, mean]            222000, 148.00
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    14.051777892s, 11.9916364s, 2.060141492s
+Latencies     [mean, 50, 95, 99, max]  1.955310213s, 2.103648068s, 3.139441378s, 3.179326788s, 3.222069357s
+Bytes In      [total, mean]            36000, 25.00
+Bytes Out     [total, mean]            213120, 148.00
 Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:1500  
+Status Codes  [code:count]             200:1440  
 Error Set:
 
 
 
 Vegeta Attack Query CourtKind
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    14.994898257s, 14.990021891s, 4.876366ms
-Latencies     [mean, 50, 95, 99, max]  4.515702ms, 4.904267ms, 7.03093ms, 13.214046ms, 68.837258ms
-Bytes In      [total, mean]            159000, 106.00
-Bytes Out     [total, mean]            117000, 78.00
-Success       [ratio]                  0.00%
-Status Codes  [code:count]             400:1500  
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    11.995757134s, 11.991764975s, 3.992159ms
+Latencies     [mean, 50, 95, 99, max]  10.098151ms, 4.544445ms, 26.478745ms, 132.890786ms, 201.562833ms
+Bytes In      [total, mean]            92160, 64.00
+Bytes Out     [total, mean]            116640, 81.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:1440  
 Error Set:
-400 Bad Request
 
 
 
 Vegeta Attack Query Games
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    14.991888827s, 14.989902048s, 1.986779ms
-Latencies     [mean, 50, 95, 99, max]  5.65518ms, 4.878032ms, 7.668852ms, 49.707015ms, 167.376238ms
-Bytes In      [total, mean]            153000, 102.00
-Bytes Out     [total, mean]            114000, 76.00
-Success       [ratio]                  0.00%
-Status Codes  [code:count]             400:1500  
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    11.998738389s, 11.991736347s, 7.002042ms
+Latencies     [mean, 50, 95, 99, max]  21.988209ms, 8.192736ms, 103.255511ms, 182.846538ms, 249.911325ms
+Bytes In      [total, mean]            5932800, 4120.00
+Bytes Out     [total, mean]            135360, 94.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:1440  
 Error Set:
-400 Bad Request
 
 
 
 Vegeta Attack Query ParkInd
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    14.993290793s, 14.990001461s, 3.289332ms
-Latencies     [mean, 50, 95, 99, max]  4.668506ms, 4.890029ms, 7.193811ms, 14.480223ms, 72.780365ms
-Bytes In      [total, mean]            156000, 104.00
-Bytes Out     [total, mean]            87000, 58.00
-Success       [ratio]                  0.00%
-Status Codes  [code:count]             400:1500  
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    12.144923311s, 11.991772293s, 153.151018ms
+Latencies     [mean, 50, 95, 99, max]  107.13818ms, 107.03878ms, 175.469854ms, 192.789409ms, 255.291198ms
+Bytes In      [total, mean]            86400, 60.00
+Bytes Out     [total, mean]            77760, 54.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:1440  
 Error Set:
-400 Bad Request
 
 
 
 Vegeta Attack Query ParkQ
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    14.995425506s, 14.990135257s, 5.290249ms
-Latencies     [mean, 50, 95, 99, max]  4.53347ms, 4.925141ms, 7.234872ms, 12.931698ms, 26.482453ms
-Bytes In      [total, mean]            153000, 102.00
-Bytes Out     [total, mean]            174000, 116.00
-Success       [ratio]                  0.00%
-Status Codes  [code:count]             400:1500  
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    11.995781131s, 11.991674381s, 4.10675ms
+Latencies     [mean, 50, 95, 99, max]  6.793245ms, 4.594255ms, 19.494828ms, 34.296046ms, 92.223281ms
+Bytes In      [total, mean]            673920, 468.00
+Bytes Out     [total, mean]            200160, 139.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:1440  
 Error Set:
-400 Bad Request
 
 
 
 Vegeta Attack Endpoints
-Requests      [total, rate]            1500, 100.07
-Duration      [total, attack, wait]    14.993279952s, 14.98993229s, 3.347662ms
-Latencies     [mean, 50, 95, 99, max]  5.414466ms, 3.927258ms, 11.825902ms, 38.247394ms, 98.232973ms
-Bytes In      [total, mean]            1218000, 812.00
+Requests      [total, rate]            1440, 120.08
+Duration      [total, attack, wait]    12.008442583s, 11.9916435s, 16.799083ms
+Latencies     [mean, 50, 95, 99, max]  6.53269ms, 4.048783ms, 16.928719ms, 59.489482ms, 106.219872ms
+Bytes In      [total, mean]            1169280, 812.00
 Bytes Out     [total, mean]            0, 0.00
 Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:1500  
+Status Codes  [code:count]             200:1440  
 Error Set:
 
 
