@@ -1,0 +1,36 @@
+Small Vegeta Attack
+Requests      [total, rate]            100, 20.20
+Duration      [total, attack, wait]    4.971183025s, 4.949798376s, 21.384649ms
+Latencies     [mean, 50, 95, 99, max]  27.517997ms, 26.588236ms, 44.897072ms, 48.809549ms, 50.676628ms
+Bytes In      [total, mean]            3200, 32.00
+Bytes Out     [total, mean]            23400, 234.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:100  
+Error Set:
+
+
+
+Vegeta Attack
+Requests      [total, rate]            1600, 80.05
+Duration      [total, attack, wait]    20.000625038s, 19.987493455s, 13.131583ms
+Latencies     [mean, 50, 95, 99, max]  29.198233ms, 20.003644ms, 74.408256ms, 166.916269ms, 261.079685ms
+Bytes In      [total, mean]            51136, 31.96
+Bytes Out     [total, mean]            373932, 233.71
+Success       [ratio]                  99.88%
+Status Codes  [code:count]             0:2  200:1598  
+Error Set:
+Post http://localhost:3000/graphql/: read tcp 127.0.0.1:39677->127.0.0.1:3000: read: connection reset by peer
+Post http://localhost:3000/graphql/: read tcp 127.0.0.1:39745->127.0.0.1:3000: read: connection reset by peer
+
+
+
+Big Vegeta Attack
+Requests      [total, rate]            4500, 150.03
+Duration      [total, attack, wait]    33.018119304s, 29.993443204s, 3.0246761s
+Latencies     [mean, 50, 95, 99, max]  4.424660848s, 3.8788904s, 9.065118532s, 10.311130568s, 10.924217333s
+Bytes In      [total, mean]            135040, 30.01
+Bytes Out     [total, mean]            987480, 219.44
+Success       [ratio]                  93.78%
+Status Codes  [code:count]             0:280  200:4220  
+Error Set:
+Post http://localhost:3000/graphql/: dial tcp 0.0.0.0:0->127.0.0.1:3000: socket: too many open files

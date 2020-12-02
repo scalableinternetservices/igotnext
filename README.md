@@ -1,5 +1,35 @@
 # igotnext
 
+![image](https://docs.google.com/drawings/d/e/2PACX-1vRU8Hepb9Ldgr06uLW5Vo7HEa3n1WQFnnje_P02NKKy3nMVPoi89z7VKltGdNMgPBkmIVrStCgEyHLT/pub?w=360&amp;h=360)
+
+Team: IGotNext
+
+Group Members: Ryan Yang, Sean Yin, Aaron Phillip, Cheng Peng
+
+---
+
+## Run Our Load Testing
+
+### K6
+
+To run our K6 loadtests, follow the [K6 installation Guide](https://k6.io/docs/getting-started/installation) if it has not been installed already. Then, enter our main project director and run the load test as specified in the code block below. Changes can be made in [k6.js](server/src/loadtest/k6.js) and more information on K6 can be found [here](https://k6.io/docs/).
+
+```bash
+cd igotnext
+k6 run ./server/src/loadtest/k6.js
+```
+
+### Vegeta
+
+Running our Vegeta tests follows a similar process. First, install the Vegeta load testing package as described [here](https://www.scaleway.com/en/docs/vegeta-load-testing/) if you are on ubuntu, or [here](https://github.com/tsenart/vegeta) if you are on OS X. Then, follow the code snippet below to run the preconfigured loadtests or change the load test itself in [vegeta_run.sh](server/src/loadtest/vegeta/vegeta_run.sh). If permissions are not enabled for the script, enable them. More information on vegeta can be found on its [official github](https://github.com/tsenart/vegeta).
+
+```bash
+cd igotnext
+./server/src/loadtest/vegeta/vegeta_run.sh
+```
+
+---
+
 Welcome to Cloud City!
 
 ## Dependencies
