@@ -1,0 +1,8 @@
+{
+  "operationName": "AddGame",
+  "variables":
+  {
+    "courtID": 1
+  },
+  "query": "mutation AddGame($courtID: Int) {addGame(courtID: $courtID)}"
+}

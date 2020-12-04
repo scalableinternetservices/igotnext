@@ -1,0 +1,11 @@
+query parkQ{
+	park(latitude: 33, longitude: -117){
+    parkID
+    longitude
+    latitude
+    parkName
+    courts{
+      courtID
+    }
+  }
+}
